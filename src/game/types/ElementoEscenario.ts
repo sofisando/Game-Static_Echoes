@@ -1,31 +1,37 @@
 export interface ElementoEscenario {
+  x: number;
+  y: number;
 
-    x: number;
-    y: number;
+  atlasKey: string;
+  frameName: string;
 
-    atlasKey: string;
-    frameName: string;
+  interactivo: boolean;
 
-    interactivo: boolean;
+  nombre?: string;
+  dialogo?: string[];
+  dialogoLocked?: string[];
 
-    nombre?: string;
-    dialogo?: string[];
+  // Sistema de interacción
+  clueId?: string; // agrega una pista al inventario
+  itemId?: string; // agrega un objeto físico
+  flagId?: string; // cambia un estado global
 
-    // Sistema de interacción
-    clueId?: string;        // agrega una pista al inventario
-    itemId?: string;        // agrega un objeto físico
-    flagId?: string;        // cambia un estado global
-    required?: string;      // requiere algo para interactuar
+  // requiere algo para interactuar
+  requirements?: {
+    items?: string[];
+    clues?: string[];
+    flags?: string[];
+  };
 
-    esSuelo?: boolean;
+  esSuelo?: boolean;
 
-    solido?: boolean;
-    colisionW?: number;
-    colisionH?: number;
+  solido?: boolean;
+  colisionW?: number;
+  colisionH?: number;
 
-    escala?: number;
-    rotacion?: number;
+  escala?: number;
+  rotacion?: number;
 
-    esTransicion?: boolean;
-    promptTransicion?: string;
+  esTransicion?: boolean;
+  promptTransicion?: string;
 }

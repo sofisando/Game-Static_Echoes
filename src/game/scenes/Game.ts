@@ -1,16 +1,15 @@
-import { Scene, Math as PhaserMath, Input, Cameras } from "phaser";
+import { Scene, Math as PhaserMath, Cameras } from "phaser";
 import { ElementoEscenario } from "../types/ElementoEscenario";
 import { livingObjects } from "../data/rooms/living";
 import { habitacionObjects } from "../data/rooms/habitación";
 import { createPlayerAnimations } from "../animations/playerAnimations";
 import { Player } from "../entities/Player";
+import { canInteract } from "../systems/interaction";
 
 export class GameScene extends Scene {
   // Referencias de GameObjects del personaje y teclado
   private jugador!: Player;
   private cursores!: Phaser.Types.Input.Keyboard.CursorKeys;
-  private teclaE!: Phaser.Input.Keyboard.Key;
-  private teclaF!: Phaser.Input.Keyboard.Key; // NUEVO: Tecla para viajes/escaleras
 
   // Arrays para renderizado, profundidad y colisiones
   private todosLosMuebles: any[] = [];
@@ -25,7 +24,7 @@ export class GameScene extends Scene {
   private estadoJuego: "EXPLORANDO" | "DIALOGO" | "TRANSICIONANDO" =
     "EXPLORANDO"; // NUEVO: Estado de transición
 
-  // Interfaz de diálogos integrada
+  // Interfaz de diálogos integrada todos estos me dice que no se estan ocupando
   private contenedorDialogo!: Phaser.GameObjects.Container;
   private textoDialogo!: Phaser.GameObjects.Text;
   private textoNombre!: Phaser.GameObjects.Text;
@@ -61,13 +60,14 @@ export class GameScene extends Scene {
         mueble.setData("interactivo", true);
         mueble.setData("nombre", obj.nombre);
         mueble.setData("dialogo", obj.dialogo);
+        mueble.setData("dialogoLocked", obj.dialogoLocked);
 
         // Sistema de pistas e inventario
         mueble.setData("clueId", obj.clueId);
         mueble.setData("itemId", obj.itemId);
         mueble.setData("flagId", obj.flagId);
-        mueble.setData("required", obj.required);
-        
+        mueble.setData("requirements", obj.requirements);
+
         if (obj.esTransicion) {
           mueble.setData("esTransicion", true);
           mueble.setData("promptTransicion", obj.promptTransicion);
@@ -135,8 +135,6 @@ export class GameScene extends Scene {
 
     // Configurar periféricos de entrada (Añadiendo tecla F)
     this.cursores = this.input.keyboard!.createCursorKeys();
-    this.teclaE = this.input.keyboard!.addKey(Input.Keyboard.KeyCodes.E);
-    this.teclaF = this.input.keyboard!.addKey(Input.Keyboard.KeyCodes.F); // NUEVO: Inicializar tecla F
 
     // 🧱 CONSTRUCCIÓN DE LA CASA EXPANDIDA (Ancho total: 1600px para albergar múltiples salas)
     const pared = this.add.tileSprite(800, 105, 1600, 210, "wall");
@@ -222,7 +220,7 @@ export class GameScene extends Scene {
       .setDepth(3000);
 
     // Crear la caja de diálogo
-    this.crearCajaDialogo();
+    this.crearCajaDialogo(); //me dice que crearCajaDialogo no existe en GameScene
 
     // Configuración de la cámara seguidora
     this.cameras.main.setBounds(0, 0, 1600, 600);
@@ -233,7 +231,7 @@ export class GameScene extends Scene {
     this.input.keyboard!.on("keydown-E", this.manejarAccionE, this);
 
     // NUEVO: Registrar entrada de teclado para transición [F]
-    this.input.keyboard!.on("keydown-F", this.manejarAccionF, this);
+    this.input.keyboard!.on("keydown-F", this.manejarAccionF, this); //error: La propiedad "manejarAccionF" no existe en el tipo "GameScene". ¿Quería decir "manejarAccionE"?
     console.log("Estado:", this.estadoJuego);
   }
 
@@ -390,17 +388,24 @@ export class GameScene extends Scene {
   }
 
   private manejarAccionE() {
-    // Ignorar la tecla E si el objeto es un portal de transición
     if (this.objetoCercano && this.objetoCercano.getData("esTransicion"))
       return;
 
     if (this.estadoJuego === "EXPLORANDO" && this.objetoCercano) {
-      this.dialogoActual = this.objetoCercano.getData("dialogo");
+      const requirements = this.objetoCercano.getData("requirements");
+
+      if (!canInteract(requirements)) {
+        this.dialogoActual = this.objetoCercano.getData("dialogoLocked");
+      } else {
+        this.dialogoActual = this.objetoCercano.getData("dialogo");
+      }
+
       this.indiceDialogoActual = 0;
       this.estadoJuego = "DIALOGO";
       this.mostrarLineaDialogo();
     } else if (this.estadoJuego === "DIALOGO") {
       this.indiceDialogoActual++;
+
       if (this.indiceDialogoActual < this.dialogoActual.length) {
         this.mostrarLineaDialogo();
       } else {
