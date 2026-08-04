@@ -1,66 +1,55 @@
+import { Scene } from "phaser";
+
 export class GameScene extends Scene {
+  constructor() {
+    super("Game");
+  }
 
-    constructor(){
-        super("Game");
+  preload() {
+    this.load.tilemapTiledJSON(
+      "oficina",
+      "assets/tiled/maps/oficina/Oficina.json",
+    );
+    this.load.image(
+      "PisosYParedes",
+      "assets/tiled/tiles/interior/floorswalls.png",
+    );
+    this.load.image("Living", "assets/tiled/tiles/interior/livingroom.png");
+    this.load.image(
+      "Decoraciones",
+      "assets/tiled/tiles/interior/decorations.png",
+    );
+    this.load.image(
+      "Puerta",
+      "assets/tiled/tiles/interior/doorswindowsstairs.png",
+    );
+    this.load.image("Librerias", "assets/tiled/tiles/interior/librerias.png");
+  }
+
+  create() {
+    const map = this.make.tilemap({
+      key: "oficina",
+    });
+    this.cameras.main.setZoom(3);
+    this.cameras.main.centerOn(map.widthInPixels / 2, map.heightInPixels / 2);
+
+    console.log(map);
+
+    const PisosYParedes = map.addTilesetImage("PisosYParedes", "PisosYParedes");
+    const Puerta = map.addTilesetImage("Puerta", "Puerta");
+    const Librerias = map.addTilesetImage("Librerias", "Librerias");
+    const Living = map.addTilesetImage("Living", "Living");
+    const Decoraciones = map.addTilesetImage("Decoraciones", "Decoraciones");
+
+    if (!PisosYParedes || !Puerta || !Librerias || !Living || !Decoraciones) {
+      console.error("No encontró el tileset");
+      return;
     }
 
-    preload(){
-
-        this.load.tilemapTiledJSON(
-            "pasillo",
-            "assets/maps/pasilloMap.json"
-        );
-
-        this.load.image(
-            "Pisos",
-            "assets/tiles/Pisos.png"
-        );
-
-        this.load.image(
-            "Decoraciones",
-            "assets/tiles/Decoraciones.png"
-        );
-
-        this.load.image(
-            "PuertasVentanasEscaleras",
-            "assets/tiles/PuertasVentanasEscaleras.png"
-        );
-
-    }
-
-    create(){
-
-        const map = this.make.tilemap({
-            key:"pasillo"
-        });
-
-        const pisos =
-            map.addTilesetImage(
-                "Pisos",
-                "Pisos"
-            );
-
-        const decoraciones =
-            map.addTilesetImage(
-                "Decoraciones",
-                "Decoraciones"
-            );
-
-        const puertas =
-            map.addTilesetImage(
-                "PuertasVentanasEscaleras",
-                "PuertasVentanasEscaleras"
-            );
-
-        map.createLayer("piso", pisos);
-
-        map.createLayer("pared", decoraciones);
-
-        map.createLayer(
-            "puertas",
-            [decoraciones, puertas]
-        );
-
-    }
-
-}
+    map.createLayer("Piso", PisosYParedes);
+    map.createLayer("Pared", [PisosYParedes, Living]);
+    map.createLayer("Puerta", Puerta);
+    map.createLayer("Muebles", [Librerias, Living]);
+    map.createLayer("Decoraciones", Decoraciones);
+  }
+} 
