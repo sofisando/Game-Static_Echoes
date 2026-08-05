@@ -1,12 +1,12 @@
 import { Scene, Input } from "phaser";
 import { ZonaTransicion } from "../types/transition";
-import { getProperty } from "../systems/tiled";
 import {
   addTilesets,
   createCollisionGroup,
   createMap,
   preloadMap,
 } from "../systems/tilemap";
+import { createTransitionGroup } from "../systems/transitions";
 
 export class GameScene extends Scene {
   constructor() {
@@ -63,33 +63,7 @@ export class GameScene extends Scene {
 
     this.colisiones = createCollisionGroup(this, map);
 
-    const capaTransiciones = map.getObjectLayer("Transiciones");
-
-    if (capaTransiciones) {
-      capaTransiciones.objects.forEach((obj) => {
-        const zona = this.add.rectangle(
-          obj.x! + obj.width! / 2,
-          obj.y! + obj.height! / 2,
-          obj.width!,
-          obj.height!,
-          0x00ff00,
-          0, // invisible
-        );
-
-        this.physics.add.existing(zona, true);
-
-        const datos: ZonaTransicion = {
-          goTo: getProperty(obj, "goTo") as string,
-          spawn: getProperty(obj, "spawn") as string,
-        };
-
-        (
-          zona as Phaser.GameObjects.Rectangle & { transicion: ZonaTransicion }
-        ).transicion = datos;
-
-        this.transiciones.add(zona);
-      });
-    }
+    this.transiciones = createTransitionGroup(this, map);
 
     this.textoF = this.add.text(0, 0, "[F]", {
       fontSize: "14px",
