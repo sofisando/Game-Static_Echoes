@@ -1,6 +1,7 @@
-import { Scene, Input} from "phaser";
+import { Scene, Input } from "phaser";
 import { ZonaTransicion } from "../types/transition";
 import { getProperty } from "../systems/tiled";
+import { addTilesets, createMap, preloadMap } from "../systems/tilemap";
 
 export class GameScene extends Scene {
   constructor() {
@@ -20,25 +21,7 @@ export class GameScene extends Scene {
   private textoF!: Phaser.GameObjects.Text;
 
   preload() {
-    this.load.tilemapTiledJSON(
-      "oficina",
-      "assets/tiled/maps/oficina/Oficina.json",
-    );
-    this.load.image(
-      "PisosYParedes",
-      "assets/tiled/tiles/interior/floorswalls.png",
-    );
-    this.load.image("Living", "assets/tiled/tiles/interior/livingroom.png");
-    this.load.image(
-      "Decoraciones",
-      "assets/tiled/tiles/interior/decorations.png",
-    );
-    this.load.image(
-      "Puerta",
-      "assets/tiled/tiles/interior/doorswindowsstairs.png",
-    );
-    this.load.image("Librerias", "assets/tiled/tiles/interior/librerias.png");
-
+    preloadMap(this);
     //personaje
     this.load.spritesheet(
       "player_idle",
@@ -60,18 +43,14 @@ export class GameScene extends Scene {
   }
 
   create() {
-    const map = this.make.tilemap({
-      key: "oficina",
-    });
+    const map = createMap(this);
+
+    const [PisosYParedes, Living, Decoraciones, Puerta, Librerias] =
+      addTilesets(map);
 
     this.colisiones = this.physics.add.staticGroup();
     this.transiciones = this.physics.add.staticGroup();
 
-    const PisosYParedes = map.addTilesetImage("PisosYParedes", "PisosYParedes");
-    const Puerta = map.addTilesetImage("Puerta", "Puerta");
-    const Librerias = map.addTilesetImage("Librerias", "Librerias");
-    const Living = map.addTilesetImage("Living", "Living");
-    const Decoraciones = map.addTilesetImage("Decoraciones", "Decoraciones");
     const capaColisiones = map.getObjectLayer("Colisiones");
 
     if (!PisosYParedes || !Puerta || !Librerias || !Living || !Decoraciones) {
