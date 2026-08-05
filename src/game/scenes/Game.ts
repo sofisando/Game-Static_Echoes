@@ -1,4 +1,6 @@
-import { Scene } from "phaser";
+import { Scene, Input} from "phaser";
+import { ZonaTransicion } from "../types/transition";
+import { getProperty } from "../systems/tiled";
 
 export class GameScene extends Scene {
   constructor() {
@@ -7,6 +9,15 @@ export class GameScene extends Scene {
   private jugador!: Phaser.Physics.Arcade.Sprite;
   private cursores!: Phaser.Types.Input.Keyboard.CursorKeys;
   private colisiones!: Phaser.Physics.Arcade.StaticGroup;
+  private transiciones!: Phaser.Physics.Arcade.StaticGroup;
+  private transicionActual:
+    | (Phaser.GameObjects.Rectangle & {
+        transicion: ZonaTransicion;
+      })
+    | null = null;
+
+  private teclaF!: Phaser.Input.Keyboard.Key;
+  private textoF!: Phaser.GameObjects.Text;
 
   preload() {
     this.load.tilemapTiledJSON(
@@ -54,8 +65,7 @@ export class GameScene extends Scene {
     });
 
     this.colisiones = this.physics.add.staticGroup();
-
-    console.log(map);
+    this.transiciones = this.physics.add.staticGroup();
 
     const PisosYParedes = map.addTilesetImage("PisosYParedes", "PisosYParedes");
     const Puerta = map.addTilesetImage("Puerta", "Puerta");
@@ -83,6 +93,47 @@ export class GameScene extends Scene {
         this.colisiones.add(rect);
       });
     }
+
+    const capaTransiciones = map.getObjectLayer("Transiciones");
+
+    if (capaTransiciones) {
+      capaTransiciones.objects.forEach((obj) => {
+        const zona = this.add.rectangle(
+          obj.x! + obj.width! / 2,
+          obj.y! + obj.height! / 2,
+          obj.width!,
+          obj.height!,
+          0x00ff00,
+          0, // invisible
+        );
+
+        this.physics.add.existing(zona, true);
+
+        const datos: ZonaTransicion = {
+          goTo: getProperty(obj, "goTo") as string,
+          spawn: getProperty(obj, "spawn") as string,
+        };
+
+        (
+          zona as Phaser.GameObjects.Rectangle & { transicion: ZonaTransicion }
+        ).transicion = datos;
+
+        this.transiciones.add(zona);
+      });
+    }
+
+    this.textoF = this.add.text(0, 0, "[F]", {
+      fontSize: "14px",
+      backgroundColor: "#000",
+      color: "#ffffff",
+      padding: { x: 5, y: 2 },
+    });
+
+    this.textoF.setVisible(false);
+    this.textoF.setDepth(9999);
+
+    this.teclaF = this.input.keyboard!.addKey(Input.Keyboard.KeyCodes.F);
+
     map.createLayer("Piso", PisosYParedes);
     map.createLayer("Pared", [PisosYParedes, Living]);
     map.createLayer("Puerta", Puerta);
@@ -142,6 +193,13 @@ export class GameScene extends Scene {
 
     //cursor
     this.cursores = this.input.keyboard!.createCursorKeys();
+
+    //Detectar cuando el jugador entra, de qué no sé
+    this.physics.add.overlap(this.jugador, this.transiciones, (_, zona) => {
+      this.transicionActual = zona as Phaser.GameObjects.Rectangle & {
+        transicion: ZonaTransicion;
+      };
+    });
   }
 
   update() {
@@ -170,5 +228,22 @@ export class GameScene extends Scene {
     }
 
     this.jugador.setDepth(this.jugador.y);
+
+    if (this.transicionActual) {
+      this.textoF.setVisible(true);
+
+      this.textoF.setPosition(this.jugador.x, this.jugador.y - 40);
+    } else {
+      this.textoF.setVisible(false);
+    }
+
+    if (this.transicionActual && Input.Keyboard.JustDown(this.teclaF)) {
+      this.scene.start(
+        this.transicionActual.transicion.goTo, //me dice que la propiedad transicion no existe en el tipo never
+        {
+          spawn: this.transicionActual.transicion.spawn,
+        },
+      );
+    }
   }
 }
