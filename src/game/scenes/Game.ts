@@ -6,6 +6,7 @@ export class GameScene extends Scene {
   }
   private jugador!: Phaser.Physics.Arcade.Sprite;
   private cursores!: Phaser.Types.Input.Keyboard.CursorKeys;
+  private colisiones!: Phaser.Physics.Arcade.StaticGroup;
 
   preload() {
     this.load.tilemapTiledJSON(
@@ -51,8 +52,8 @@ export class GameScene extends Scene {
     const map = this.make.tilemap({
       key: "oficina",
     });
-    // this.cameras.main.setZoom(3);
-    // this.cameras.main.centerOn(map.widthInPixels / 2, map.heightInPixels / 2);
+
+    this.colisiones = this.physics.add.staticGroup();
 
     console.log(map);
 
@@ -61,18 +62,32 @@ export class GameScene extends Scene {
     const Librerias = map.addTilesetImage("Librerias", "Librerias");
     const Living = map.addTilesetImage("Living", "Living");
     const Decoraciones = map.addTilesetImage("Decoraciones", "Decoraciones");
+    const capaColisiones = map.getObjectLayer("Colisiones");
 
     if (!PisosYParedes || !Puerta || !Librerias || !Living || !Decoraciones) {
       console.error("No encontró el tileset");
       return;
     }
 
+    if (capaColisiones) {
+      capaColisiones.objects.forEach((obj) => {
+        const rect = this.add.rectangle(
+          obj.x! + obj.width! / 2,
+          obj.y! + obj.height! / 2,
+          obj.width!,
+          obj.height!,
+          0xff0000,
+          0,
+        );
+        this.physics.add.existing(rect, true);
+        this.colisiones.add(rect);
+      });
+    }
     map.createLayer("Piso", PisosYParedes);
     map.createLayer("Pared", [PisosYParedes, Living]);
     map.createLayer("Puerta", Puerta);
     map.createLayer("Muebles", [Librerias, Living]);
     map.createLayer("Decoraciones", Decoraciones);
-
 
     //animaciones personaje
     this.anims.create({
@@ -96,9 +111,27 @@ export class GameScene extends Scene {
     });
 
     //personaje
-    this.jugador = this.physics.add.sprite(120, 120, "player_idle", 0);
+    const spawnLayer = map.getObjectLayer("Spawn");
+
+    if (spawnLayer && spawnLayer.objects.length > 0) {
+      const spawn = spawnLayer.objects[0];
+
+      this.jugador = this.physics.add.sprite(
+        spawn.x!,
+        spawn.y!,
+        "player_idle",
+        0,
+      );
+    }
+    this.physics.add.collider(this.jugador, this.colisiones);
+    this.jugador.body!.setSize(26, 10);
+    this.jugador.body!.setOffset(50, 120);
     this.jugador.setScale(0.6);
     this.jugador.setOrigin(0.5, 0.82);
+
+    // Configurar límites del mundo
+    this.physics.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
+    this.jugador.setCollideWorldBounds(true);
 
     // Configurar cámara
     this.cameras.main.setZoom(3);
