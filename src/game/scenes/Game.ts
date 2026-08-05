@@ -1,5 +1,5 @@
 import { Scene, Input } from "phaser";
-import { ZonaTransicion } from "../types/transition";
+import { ObjetoTransicion, ZonaTransicion } from "../types/transition";
 import {
   addTilesets,
   createCollisionGroup,
@@ -139,9 +139,7 @@ export class GameScene extends Scene {
 
     //Detectar cuando el jugador entra, de qué no sé
     this.physics.add.overlap(this.jugador, this.transiciones, (_, zona) => {
-      this.transicionActual = zona as Phaser.GameObjects.Rectangle & {
-        transicion: ZonaTransicion;
-      };
+      this.transicionActual = zona as ObjetoTransicion;
     });
   }
 
