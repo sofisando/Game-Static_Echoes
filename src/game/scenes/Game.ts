@@ -1,7 +1,12 @@
 import { Scene, Input } from "phaser";
 import { ZonaTransicion } from "../types/transition";
 import { getProperty } from "../systems/tiled";
-import { addTilesets, createMap, preloadMap } from "../systems/tilemap";
+import {
+  addTilesets,
+  createCollisionGroup,
+  createMap,
+  preloadMap,
+} from "../systems/tilemap";
 
 export class GameScene extends Scene {
   constructor() {
@@ -51,27 +56,12 @@ export class GameScene extends Scene {
     this.colisiones = this.physics.add.staticGroup();
     this.transiciones = this.physics.add.staticGroup();
 
-    const capaColisiones = map.getObjectLayer("Colisiones");
-
     if (!PisosYParedes || !Puerta || !Librerias || !Living || !Decoraciones) {
       console.error("No encontró el tileset");
       return;
     }
 
-    if (capaColisiones) {
-      capaColisiones.objects.forEach((obj) => {
-        const rect = this.add.rectangle(
-          obj.x! + obj.width! / 2,
-          obj.y! + obj.height! / 2,
-          obj.width!,
-          obj.height!,
-          0xff0000,
-          0,
-        );
-        this.physics.add.existing(rect, true);
-        this.colisiones.add(rect);
-      });
-    }
+    this.colisiones = createCollisionGroup(this, map);
 
     const capaTransiciones = map.getObjectLayer("Transiciones");
 
