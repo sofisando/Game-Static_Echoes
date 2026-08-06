@@ -7,6 +7,8 @@ import {
   preloadMap,
 } from "../systems/tilemap";
 import { createTransitionGroup } from "../systems/transitions";
+import { createPlayerAnimations } from "../animations/playerAnimations";
+import { preloadPlayerAssets } from "../data/personajes/player";
 
 export class GameScene extends Scene {
   constructor() {
@@ -27,24 +29,7 @@ export class GameScene extends Scene {
 
   preload() {
     preloadMap(this);
-    //personaje
-    this.load.spritesheet(
-      "player_idle",
-      "assets/tiled/tiles/personajes/jugador/Idle_2.png",
-      {
-        frameWidth: 128,
-        frameHeight: 128,
-      },
-    );
-
-    this.load.spritesheet(
-      "player_run",
-      "assets/tiled/tiles/personajes/jugador/Run.png",
-      {
-        frameWidth: 128,
-        frameHeight: 128,
-      },
-    );
+    preloadPlayerAssets(this);
   }
 
   create() {
@@ -83,26 +68,7 @@ export class GameScene extends Scene {
     map.createLayer("Muebles", [Librerias, Living]);
     map.createLayer("Decoraciones", Decoraciones);
 
-    //animaciones personaje
-    this.anims.create({
-      key: "detective_idle",
-      frames: this.anims.generateFrameNumbers("player_idle", {
-        start: 0,
-        end: 12,
-      }),
-      frameRate: 5,
-      repeat: -1,
-    });
-
-    this.anims.create({
-      key: "detective_run",
-      frames: this.anims.generateFrameNumbers("player_run", {
-        start: 0,
-        end: 9,
-      }),
-      frameRate: 14,
-      repeat: -1,
-    });
+    createPlayerAnimations(this);
 
     //personaje
     const spawnLayer = map.getObjectLayer("Spawn");
