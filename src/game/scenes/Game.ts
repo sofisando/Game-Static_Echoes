@@ -9,6 +9,8 @@ import {
 import { createTransitionGroup } from "../systems/transitions";
 import { createPlayerAnimations } from "../animations/playerAnimations";
 import { preloadPlayerAssets } from "../data/personajes/player";
+import { createInteractionPrompt } from "../systems/ui";
+import { cameraConfig } from "../systems/camera";
 
 export class GameScene extends Scene {
   constructor() {
@@ -50,15 +52,7 @@ export class GameScene extends Scene {
 
     this.transiciones = createTransitionGroup(this, map);
 
-    this.textoF = this.add.text(0, 0, "[F]", {
-      fontSize: "14px",
-      backgroundColor: "#000",
-      color: "#ffffff",
-      padding: { x: 5, y: 2 },
-    });
-
-    this.textoF.setVisible(false);
-    this.textoF.setDepth(9999);
+    this.textoF = createInteractionPrompt(this);
 
     this.teclaF = this.input.keyboard!.addKey(Input.Keyboard.KeyCodes.F);
 
@@ -93,10 +87,8 @@ export class GameScene extends Scene {
     this.physics.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
     this.jugador.setCollideWorldBounds(true);
 
-    // Configurar cámara
-    this.cameras.main.setZoom(3);
-    this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
-    this.cameras.main.startFollow(this.jugador);
+    
+    cameraConfig(this, this.jugador, map);
 
     this.jugador.play("detective_idle");
 
