@@ -1,4 +1,6 @@
-export const oficinaConfig = {
+import { MapConfig } from "../../types/map";
+
+export const oficinaConfig: MapConfig = {
   key: "oficina",
   json: "assets/tiled/maps/oficina/Oficina.json",
 
@@ -29,7 +31,27 @@ export const oficinaConfig = {
       image: "assets/tiled/tiles/interior/librerias.png",
     },
   ],
-};
 
-//Entonces el preload se transforma en algo parecido a
-// loadMap(this, oficinaConfig);
+  layers: [
+    {
+      name: "Piso",
+      tilesets: ["PisosYParedes"],
+    },
+    {
+      name: "Pared",
+      tilesets: ["PisosYParedes", "Living"],
+    },
+    {
+      name: "Puerta",
+      tilesets: ["Puerta"],
+    },
+    {
+      name: "Muebles",
+      tilesets: ["Living", "Librerias"],
+    },
+    {
+      name: "Decoraciones",
+      tilesets: ["Decoraciones"],
+    },
+  ],
+};

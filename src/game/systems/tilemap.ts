@@ -1,85 +1,76 @@
 import { Scene } from "phaser";
 import { oficinaConfig } from "../data/maps/oficina";
+import { MapConfig } from "../types/map";
 
-export function preloadMap(scene: Scene) {
-  scene.load.tilemapTiledJSON(
-    oficinaConfig.key,
-    oficinaConfig.json
-  );
+export function preloadMap(scene: Phaser.Scene, config: MapConfig) {
+  scene.load.tilemapTiledJSON(config.key, config.json);
 
-  oficinaConfig.tilesets.forEach((tileset) => {
-    scene.load.image(tileset.key, tileset.image);
+  config.tilesets.forEach((tile) => {
+    scene.load.image(tile.key, tile.image);
   });
 }
 
-export function createMap(scene: Scene) {
+export function createMap(scene: Phaser.Scene, config: MapConfig) {
   return scene.make.tilemap({
-    key: oficinaConfig.key,
+    key: config.key,
   });
 }
 
-export function addTilesets(map: Phaser.Tilemaps.Tilemap) {
-  return oficinaConfig.tilesets.map((tileset) =>
-    map.addTilesetImage(
-      tileset.tiledName,
-      tileset.key
-    )
-  );
+export function addTilesets(map: Phaser.Tilemaps.Tilemap, config: MapConfig) {
+  const resultado = new Map<string, Phaser.Tilemaps.Tileset>();
+
+  config.tilesets.forEach((tile) => {
+    const ts = map.addTilesetImage(tile.tiledName, tile.key);
+
+    if (ts) {
+      resultado.set(tile.key, ts);
+    }
+  });
+
+  return resultado;
 }
 
-//raaaaaro -------------------------------------
 export function createLayers(
-    map: Phaser.Tilemaps.Tilemap,
-    tilesets: Phaser.Tilemaps.Tileset[]
+  map: Phaser.Tilemaps.Tilemap,
+  tilesets: Map<string, Phaser.Tilemaps.Tileset>,
+  config: MapConfig,
 ) {
-
-    map.createLayer("Piso", tilesets[0]);
-
-    map.createLayer("Pared", [
-        tilesets[0],
-        tilesets[1]
-    ]);
-
-    map.createLayer("Puerta", tilesets[3]);
-
-    map.createLayer("Muebles", [
-        tilesets[4],
-        tilesets[1]
-    ]);
-
-    map.createLayer("Decoraciones", tilesets[2]);
+  config.layers.forEach((layer) => {
+    map.createLayer(
+      layer.name,
+      layer.tilesets.map((nombre) => tilesets.get(nombre)!),
+    );
+  });
 }
-// ---------------------------------------------------
+
+//-----------------------------------------------
 
 export function createCollisionGroup(
-    scene: Scene,
-    map: Phaser.Tilemaps.Tilemap
+  scene: Scene,
+  map: Phaser.Tilemaps.Tilemap,
 ) {
+  const grupo = scene.physics.add.staticGroup();
 
-    const grupo = scene.physics.add.staticGroup();
+  const layer = map.getObjectLayer("Colisiones");
 
-    const layer = map.getObjectLayer("Colisiones");
+  if (!layer) return grupo;
 
-    if (!layer) return grupo;
+  layer.objects.forEach((obj) => {
+    const rect = scene.add.rectangle(
+      obj.x! + obj.width! / 2,
+      obj.y! + obj.height! / 2,
+      obj.width!,
+      obj.height!,
+      0xff0000,
+      0,
+    );
 
-    layer.objects.forEach((obj) => {
+    scene.physics.add.existing(rect, true);
 
-        const rect = scene.add.rectangle(
-            obj.x! + obj.width! / 2,
-            obj.y! + obj.height! / 2,
-            obj.width!,
-            obj.height!,
-            0xff0000,
-            0
-        );
+    grupo.add(rect);
+  });
 
-        scene.physics.add.existing(rect, true);
-
-        grupo.add(rect);
-
-    });
-
-    return grupo;
+  return grupo;
 }
 // createLayers()
 // createCollisionObjects()

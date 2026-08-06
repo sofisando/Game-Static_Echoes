@@ -3,6 +3,7 @@ import { ObjetoTransicion, ZonaTransicion } from "../types/transition";
 import {
   addTilesets,
   createCollisionGroup,
+  createLayers,
   createMap,
   preloadMap,
 } from "../systems/tilemap";
@@ -16,6 +17,7 @@ import { createInteractionPrompt } from "../systems/ui";
 import { cameraConfig } from "../systems/camera";
 import { createPlayer, updatePlayer } from "../entities/Player";
 import { getSceneData } from "../systems/sceneData";
+import { oficinaConfig } from "../data/maps/oficina";
 
 export class GameScene extends Scene {
   constructor() {
@@ -35,23 +37,18 @@ export class GameScene extends Scene {
   private textoF!: Phaser.GameObjects.Text;
 
   preload() {
-    preloadMap(this);
+    preloadMap(this, oficinaConfig);
     preloadPlayerAssets(this);
   }
 
   create() {
-    const map = createMap(this);
+    const map = createMap(this, oficinaConfig);
 
-    const [PisosYParedes, Living, Decoraciones, Puerta, Librerias] =
-      addTilesets(map);
+    const tilesets = addTilesets(map, oficinaConfig);
 
+    createLayers(map, tilesets, oficinaConfig);
     this.colisiones = this.physics.add.staticGroup();
     this.transiciones = this.physics.add.staticGroup();
-
-    if (!PisosYParedes || !Puerta || !Librerias || !Living || !Decoraciones) {
-      console.error("No encontró el tileset");
-      return;
-    }
 
     this.colisiones = createCollisionGroup(this, map);
 
@@ -60,12 +57,6 @@ export class GameScene extends Scene {
     this.textoF = createInteractionPrompt(this);
 
     this.teclaF = this.input.keyboard!.addKey(Input.Keyboard.KeyCodes.F);
-
-    map.createLayer("Piso", PisosYParedes);
-    map.createLayer("Pared", [PisosYParedes, Living]);
-    map.createLayer("Puerta", Puerta);
-    map.createLayer("Muebles", [Librerias, Living]);
-    map.createLayer("Decoraciones", Decoraciones);
 
     createPlayerAnimations(this);
     //definimos el punto de aparición del jugador y lo creamos
