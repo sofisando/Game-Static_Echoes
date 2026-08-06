@@ -1,92 +1,43 @@
-export class Player {
+import { Scene } from "phaser";
 
-    public sprite: Phaser.GameObjects.Sprite;
+export function createPlayer(
+  scene: Scene,
+  map: Phaser.Tilemaps.Tilemap,
+  colisiones: Phaser.Physics.Arcade.StaticGroup,
+  spawnName = "Spawn",
+): Phaser.Physics.Arcade.Sprite {
+  const spawnLayer = map.getObjectLayer("Spawn");
 
-    private velocidad = 6;
+  if (!spawnLayer) {
+    throw new Error("No existe la capa Spawn");
+  }
 
-    constructor(
-        scene: Phaser.Scene,
-        x: number,
-        y: number
-    ) {
+  const spawn =
+    spawnLayer.objects.find((o) => o.name === spawnName) ??
+    spawnLayer.objects[0];
 
-        this.sprite = scene.add.sprite(x, y, "player_idle", 0);
+  if (!spawn) {
+    throw new Error("No existe ningún Spawn");
+  }
 
-        this.sprite.setScale(2);
-        this.sprite.setOrigin(0.5, 0.82);
+  const jugador = scene.physics.add.sprite(
+    spawn.x!,
+    spawn.y!,
+    "player_idle",
+    0,
+  );
 
-        this.sprite.play("detective_idle");
-    }
+  scene.physics.add.collider(jugador, colisiones);
 
-    update(cursores: Phaser.Types.Input.Keyboard.CursorKeys) {
+  jugador.body!.setSize(26, 10);
+  jugador.body!.setOffset(50, 120);
 
-        let vx = 0;
-        let vy = 0;
+  jugador.setScale(0.6);
+  jugador.setOrigin(0.5, 0.82);
 
-        if (cursores.left.isDown) {
-            vx = -this.velocidad;
-            this.sprite.setFlipX(true);
-        }
-        else if (cursores.right.isDown) {
-            vx = this.velocidad;
-            this.sprite.setFlipX(false);
-        }
+  jugador.setCollideWorldBounds(true);
 
-        if (cursores.up.isDown) {
-            vy = -this.velocidad;
-        }
-        else if (cursores.down.isDown) {
-            vy = this.velocidad;
-        }
+  jugador.play("detective_idle");
 
-        this.moveX(vx);
-        this.moveY(vy);
-
-        if (vx !== 0 || vy !== 0) {
-            this.playRun();
-        } else {
-            this.playIdle();
-        }
-    }
-
-    moveX(dx: number) {
-        this.sprite.x += dx;
-    }
-
-    moveY(dy: number) {
-        this.sprite.y += dy;
-    }
-
-    playIdle() {
-
-        if (this.sprite.anims.currentAnim?.key !== "detective_idle") {
-            this.sprite.play("detective_idle");
-        }
-
-    }
-
-    playRun() {
-
-        if (this.sprite.anims.currentAnim?.key !== "detective_run") {
-            this.sprite.play("detective_run");
-        }
-
-    }
-
-    get x() {
-        return this.sprite.x;
-    }
-
-    set x(value: number) {
-        this.sprite.x = value;
-    }
-
-    get y() {
-        return this.sprite.y;
-    }
-
-    set y(value: number) {
-        this.sprite.y = value;
-    }
-
+  return jugador;
 }

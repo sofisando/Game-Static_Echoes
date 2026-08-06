@@ -11,6 +11,8 @@ import { createPlayerAnimations } from "../animations/playerAnimations";
 import { preloadPlayerAssets } from "../data/personajes/player";
 import { createInteractionPrompt } from "../systems/ui";
 import { cameraConfig } from "../systems/camera";
+import { createPlayer } from "../entities/Player";
+import { getSceneData } from "../systems/sceneData";
 
 export class GameScene extends Scene {
   constructor() {
@@ -63,31 +65,14 @@ export class GameScene extends Scene {
     map.createLayer("Decoraciones", Decoraciones);
 
     createPlayerAnimations(this);
-
-    //personaje
-    const spawnLayer = map.getObjectLayer("Spawn");
-
-    if (spawnLayer && spawnLayer.objects.length > 0) {
-      const spawn = spawnLayer.objects[0];
-
-      this.jugador = this.physics.add.sprite(
-        spawn.x!,
-        spawn.y!,
-        "player_idle",
-        0,
-      );
-    }
-    this.physics.add.collider(this.jugador, this.colisiones);
-    this.jugador.body!.setSize(26, 10);
-    this.jugador.body!.setOffset(50, 120);
-    this.jugador.setScale(0.6);
-    this.jugador.setOrigin(0.5, 0.82);
+    //definimos el punto de aparición del jugador y lo creamos
+    const { spawn = "Spawn" } = getSceneData(this);
+    this.jugador = createPlayer(this, map, this.colisiones, spawn);
 
     // Configurar límites del mundo
     this.physics.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
     this.jugador.setCollideWorldBounds(true);
 
-    
     cameraConfig(this, this.jugador, map);
 
     this.jugador.play("detective_idle");
