@@ -1,5 +1,5 @@
-import { Scene } from "phaser";
-import { ZonaTransicion } from "../types/transition";
+import { Scene, Input } from "phaser";
+import { ObjetoTransicion, ZonaTransicion } from "../types/transition";
 import { getProperty } from "./tiled";
 
 export function createTransitionGroup(
@@ -40,4 +40,25 @@ export function createTransitionGroup(
   });
 
   return grupo;
+}
+
+export function updateTransitions(
+  scene: Phaser.Scene,
+  jugador: Phaser.Physics.Arcade.Sprite,
+  transicionActual: ObjetoTransicion | null,
+  textoF: Phaser.GameObjects.Text,
+  teclaF: Phaser.Input.Keyboard.Key,
+) {
+  if (transicionActual) {
+    textoF.setVisible(true);
+    textoF.setPosition(jugador.x, jugador.y - 40);
+
+    if (Input.Keyboard.JustDown(teclaF)) {
+      scene.scene.start(transicionActual.transicion.goTo, {
+        spawn: transicionActual.transicion.spawn,
+      });
+    }
+  } else {
+    textoF.setVisible(false);
+  }
 }

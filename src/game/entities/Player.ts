@@ -41,3 +41,34 @@ export function createPlayer(
 
   return jugador;
 }
+
+export function updatePlayer(
+  jugador: Phaser.Physics.Arcade.Sprite,
+  cursores: Phaser.Types.Input.Keyboard.CursorKeys,
+) {
+  const velocidad = 120;
+
+  jugador.setVelocity(0);
+
+  if (cursores.left.isDown) {
+    jugador.setVelocityX(-velocidad);
+    jugador.setFlipX(true);
+  } else if (cursores.right.isDown) {
+    jugador.setVelocityX(velocidad);
+    jugador.setFlipX(false);
+  }
+
+  if (cursores.up.isDown) {
+    jugador.setVelocityY(-velocidad);
+  } else if (cursores.down.isDown) {
+    jugador.setVelocityY(velocidad);
+  }
+
+  if (jugador.body!.velocity.length() > 0) {
+    jugador.play("detective_run", true);
+  } else {
+    jugador.play("detective_idle", true);
+  }
+
+  jugador.setDepth(jugador.y);
+}

@@ -6,12 +6,15 @@ import {
   createMap,
   preloadMap,
 } from "../systems/tilemap";
-import { createTransitionGroup } from "../systems/transitions";
+import {
+  createTransitionGroup,
+  updateTransitions,
+} from "../systems/transitions";
 import { createPlayerAnimations } from "../animations/playerAnimations";
 import { preloadPlayerAssets } from "../data/personajes/player";
 import { createInteractionPrompt } from "../systems/ui";
 import { cameraConfig } from "../systems/camera";
-import { createPlayer } from "../entities/Player";
+import { createPlayer, updatePlayer } from "../entities/Player";
 import { getSceneData } from "../systems/sceneData";
 
 export class GameScene extends Scene {
@@ -87,47 +90,14 @@ export class GameScene extends Scene {
   }
 
   update() {
-    const velocidad = 120;
+    updatePlayer(this.jugador, this.cursores);
 
-    this.jugador.setVelocity(0);
-
-    if (this.cursores.left.isDown) {
-      this.jugador.setVelocityX(-velocidad);
-      this.jugador.setFlipX(true);
-    } else if (this.cursores.right.isDown) {
-      this.jugador.setVelocityX(velocidad);
-      this.jugador.setFlipX(false);
-    }
-
-    if (this.cursores.up.isDown) {
-      this.jugador.setVelocityY(-velocidad);
-    } else if (this.cursores.down.isDown) {
-      this.jugador.setVelocityY(velocidad);
-    }
-
-    if (this.jugador.body!.velocity.length() > 0) {
-      this.jugador.play("detective_run", true);
-    } else {
-      this.jugador.play("detective_idle", true);
-    }
-
-    this.jugador.setDepth(this.jugador.y);
-
-    if (this.transicionActual) {
-      this.textoF.setVisible(true);
-
-      this.textoF.setPosition(this.jugador.x, this.jugador.y - 40);
-    } else {
-      this.textoF.setVisible(false);
-    }
-
-    if (this.transicionActual && Input.Keyboard.JustDown(this.teclaF)) {
-      this.scene.start(
-        this.transicionActual.transicion.goTo, //me dice que la propiedad transicion no existe en el tipo never
-        {
-          spawn: this.transicionActual.transicion.spawn,
-        },
-      );
-    }
+    updateTransitions(
+      this,
+      this.jugador,
+      this.transicionActual,
+      this.textoF,
+      this.teclaF,
+    );
   }
 }
