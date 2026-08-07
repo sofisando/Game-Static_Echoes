@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="16" height="6" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="12">
+ <editorsettings>
+  <export target="Pasillo.json" format="json"/>
+ </editorsettings>
+ <tileset firstgid="1" name="PisosYParedes" tilewidth="16" tileheight="16" tilecount="224" columns="14">
+  <image source="../../tiles/interior/floorswalls.png" width="224" height="256"/>
+ </tileset>
+ <tileset firstgid="225" name="Puerta" tilewidth="16" tileheight="16" tilecount="736" columns="46">
+  <image source="../../tiles/interior/doorswindowsstairs.png" width="736" height="256"/>
+ </tileset>
+ <tileset firstgid="961" name="Decoraciones" tilewidth="16" tileheight="16" tilecount="120" columns="12">
+  <image source="../../tiles/interior/decorations.png" width="192" height="160"/>
+ </tileset>
+ <layer id="2" name="Piso" width="16" height="6">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+80,81,81,81,81,81,81,81,81,81,81,81,81,81,81,83,
+94,96,96,96,96,96,96,96,96,96,96,96,96,96,96,97,
+108,109,109,109,109,109,109,109,109,109,109,109,109,109,109,111
+</data>
+ </layer>
+ <layer id="1" name="Pared" width="16" height="6">
+  <data encoding="csv">
+38,39,39,39,39,39,39,39,39,39,39,39,39,39,39,41,
+52,53,53,53,53,53,53,53,53,53,53,53,53,53,53,55,
+66,68,68,68,68,68,68,68,68,68,68,68,68,68,68,69,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="3" name="Puerta" width="16" height="6" offsetx="0" offsety="5.33333">
+  <data encoding="csv">
+0,0,0,278,279,0,1016,1017,0,281,282,0,0,0,0,0,
+0,0,0,324,325,0,0,0,0,327,328,0,0,0,0,0,
+0,0,0,370,371,0,0,0,0,373,374,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,419,420,0,0,1610613009,1610613055,1610613101,
+0,0,0,0,0,0,0,0,0,0,0,0,0,1610613008,1610613054,1610613100,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="4" name="Decoraciones" width="16" height="6">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+974,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+986,0,0,0,0,0,0,0,0,0,0,0,1026,0,0,0,
+998,0,0,0,0,0,0,0,0,0,0,0,1038,0,0,974,
+1022,0,0,0,0,0,0,0,0,0,0,0,0,0,0,986,
+1034,0,0,0,0,0,0,0,0,0,0,0,0,0,0,998
+</data>
+ </layer>
+ <objectgroup id="5" name="Colisiones">
+  <object id="1" x="0.333333" y="0.333333" width="256" height="50"/>
+  <object id="2" x="193.333" y="52.6667" width="14.3333" height="10"/>
+  <object id="3" x="239" y="52.6667" width="18" height="43.3333"/>
+  <object id="4" x="0" y="53.6667" width="15.6667" height="42.6667"/>
+  <object id="11" x="209" y="56" width="47.75" height="27.25"/>
+ </objectgroup>
+ <objectgroup id="6" name="Spawn">
+  <object id="5" name="desdeLiving" x="198.333" y="74" width="2" height="2.33333"/>
+  <object id="9" name="desdeOficina" x="72" y="61" width="2.5" height="2"/>
+  <object id="10" name="desdeBaño" x="169" y="64.75" width="2.25" height="2"/>
+ </objectgroup>
+ <objectgroup id="7" name="Transiciones">
+  <object id="6" name="PuertaAlBaño" x="146" y="5.66667" width="27.6667" height="48">
+   <properties>
+    <property name="goTo" value="Baño"/>
+    <property name="spawn" value="PuertaAlBaño"/>
+   </properties>
+  </object>
+  <object id="7" name="PuertaAOficina" x="49" y="6.33333" width="28.6667" height="46.6667">
+   <properties>
+    <property name="goTo" value="Oficina"/>
+    <property name="spawn" value="desdePasillo"/>
+   </properties>
+  </object>
+  <object id="8" name="Escalera" x="208.333" y="55.3333" width="48.3333" height="28.3333">
+   <properties>
+    <property name="goTo" value="Living"/>
+    <property name="spawn" value="EscaleraAlLiving"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

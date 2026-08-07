@@ -115,7 +115,7 @@
          "name":"Colisiones",
          "objects":[
                 {
-                 "height":51.4694736842105,
+                 "height":51.4695,
                  "id":1,
                  "name":"",
                  "opacity":1,
@@ -123,71 +123,71 @@
                  "type":"",
                  "visible":true,
                  "width":256,
-                 "x":0.808421052631579,
-                 "y":0.538947368421053
+                 "x":0.808421,
+                 "y":0.538947
                 }, 
                 {
-                 "height":11.0484210526316,
+                 "height":11.0484,
                  "id":20,
                  "name":"",
                  "opacity":1,
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":16.1684210526316,
+                 "width":16.1684,
                  "x":240.64,
-                 "y":52.8168421052632
+                 "y":52.8168
                 }, 
                 {
-                 "height":10.5094736842105,
+                 "height":10.5095,
                  "id":21,
                  "name":"",
                  "opacity":1,
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":160.067368421053,
-                 "x":15.0905263157895,
-                 "y":52.5473684210526
+                 "width":160.067,
+                 "x":15.0905,
+                 "y":52.5474
                 }, 
                 {
-                 "height":109.945263157895,
+                 "height":109.945,
                  "id":22,
                  "name":"",
                  "opacity":1,
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":15.6294736842105,
-                 "x":0.269473684210526,
-                 "y":50.6610526315789
+                 "width":15.6295,
+                 "x":0.269474,
+                 "y":50.6611
                 }, 
                 {
-                 "height":32.0673684210526,
+                 "height":32.0674,
                  "id":25,
                  "name":"",
                  "opacity":1,
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":16.9768421052632,
-                 "x":48.5052631578947,
-                 "y":80.8421052631579
+                 "width":16.9768,
+                 "x":48.5053,
+                 "y":80.8421
                 }, 
                 {
-                 "height":46.8884210526316,
+                 "height":46.8884,
                  "id":26,
                  "name":"",
                  "opacity":1,
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":29.6421052631579,
-                 "x":64.4042105263158,
-                 "y":80.3031578947368
+                 "width":29.6421,
+                 "x":64.4042,
+                 "y":80.3032
                 }, 
                 {
-                 "height":29.3726315789474,
+                 "height":29.3726,
                  "id":27,
                  "name":"",
                  "opacity":1,
@@ -195,44 +195,44 @@
                  "type":"",
                  "visible":true,
                  "width":15.36,
-                 "x":144.437894736842,
-                 "y":130.155789473684
+                 "x":144.438,
+                 "y":130.156
                 }, 
                 {
-                 "height":47.1578947368421,
+                 "height":47.1579,
                  "id":29,
                  "name":"",
                  "opacity":1,
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":95.9326315789474,
-                 "x":159.528421052632,
-                 "y":112.909473684211
+                 "width":95.9326,
+                 "x":159.528,
+                 "y":112.909
                 }, 
                 {
-                 "height":14.8210526315789,
+                 "height":14.8211,
                  "id":32,
                  "name":"",
                  "opacity":1,
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":14.5515789473684,
-                 "x":201.027368421053,
-                 "y":89.4652631578947
+                 "width":14.5516,
+                 "x":201.027,
+                 "y":89.4653
                 }, 
                 {
-                 "height":32.3368421052632,
+                 "height":32.3368,
                  "id":34,
                  "name":"",
                  "opacity":1,
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":30.181052631579,
-                 "x":224.471578947368,
-                 "y":80.5726315789474
+                 "width":30.1811,
+                 "x":224.472,
+                 "y":80.5726
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -246,16 +246,16 @@
          "name":"Spawn",
          "objects":[
                 {
-                 "height":1.0778947368421,
+                 "height":1.07789,
                  "id":38,
-                 "name":"",
+                 "name":"desdePasillo",
                  "opacity":1,
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":1.0778947368421,
-                 "x":230.130526315789,
-                 "y":55.5115789473684
+                 "width":1.07789,
+                 "x":230.131,
+                 "y":55.5116
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -269,9 +269,9 @@
          "name":"Transiciones",
          "objects":[
                 {
-                 "height":50.3915789473684,
+                 "height":50.3916,
                  "id":39,
-                 "name":"Puerta",
+                 "name":"PuertaAlPasillo",
                  "opacity":1,
                  "properties":[
                         {
@@ -282,14 +282,14 @@
                         {
                          "name":"spawn",
                          "type":"string",
-                         "value":"EntradaOficina"
+                         "value":"desdeOficina"
                         }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":30.9894736842105,
-                 "x":192.404210526316,
-                 "y":5.92842105263158
+                 "width":30.9895,
+                 "x":192.404,
+                 "y":5.92842
                 }],
          "opacity":1,
          "type":"objectgroup",
