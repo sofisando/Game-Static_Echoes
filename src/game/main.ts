@@ -1,6 +1,6 @@
 import { Boot } from "./scenes/Boot";
 import { GameOver } from "./scenes/GameOver";
-import { GameScene as MainGame } from "./scenes/Game";
+import { GameScene } from "./scenes/Game";
 import { MainMenu } from "./scenes/MainMenu";
 import { AUTO, Game } from "phaser";
 import { Preloader } from "./scenes/Preloader";
@@ -20,7 +20,7 @@ const config: Phaser.Types.Core.GameConfig = {
   },
   parent: "game-container",
   backgroundColor: "#474747ff",
-  scene: [Boot, Preloader, MainMenu, MainGame, GameOver, PasilloScene],
+  scene: [Boot, Preloader, MainMenu, GameScene, GameOver, PasilloScene], //cambiar Oficina por la escena en donde empiece
 };
 
 const StartGame = (parent: string) => {

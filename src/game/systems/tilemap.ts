@@ -1,5 +1,4 @@
 import { Scene } from "phaser";
-import { oficinaConfig } from "../data/maps/oficina";
 import { MapConfig } from "../types/map";
 
 export function preloadMap(scene: Phaser.Scene, config: MapConfig) {
