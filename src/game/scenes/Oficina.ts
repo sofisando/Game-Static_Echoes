@@ -1,10 +1,10 @@
 import { BaseScene } from "./BaseScene";
 import { oficinaConfig } from "../data/maps/oficina";
 
-export class GameScene extends BaseScene {
+export class Oficina extends BaseScene {
   constructor() {
     super(
-      "Game",
+      "Oficina",
       oficinaConfig,
     );
   }
