@@ -8,6 +8,7 @@ export function createTransitionGroup(
   map: Phaser.Tilemaps.Tilemap,
 ) {
   const grupo = scene.physics.add.staticGroup();
+
   const capa = map.getObjectLayer("Transiciones");
 
   if (!capa) {
@@ -46,10 +47,24 @@ export function createTransitionGroup(
 
 export function updateTransitions(
   scene: Scene,
+  jugador: Phaser.Physics.Arcade.Sprite,
   transicionActual: ObjetoTransicion | null,
   textoF: Phaser.GameObjects.Text,
   teclaF: Phaser.Input.Keyboard.Key,
 ) {
+  // Si ya tenemos una transición activa,
+  // comprobamos si el jugador sigue dentro.
+  if (transicionActual) {
+    const sigueDentro = scene.physics.overlap(
+      jugador,
+      transicionActual,
+    );
+
+    if (!sigueDentro) {
+      transicionActual = null;
+    }
+  }
+
   updateInteractionPrompt(
     textoF,
     transicionActual,
@@ -66,4 +81,6 @@ export function updateTransitions(
       },
     );
   }
+
+  return transicionActual;
 }

@@ -133,8 +133,14 @@ export abstract class BaseScene extends Scene {
   }
 
   update() {
-    updatePlayer(this.jugador, this.cursores);
+  updatePlayer(this.jugador, this.cursores);
 
-    updateTransitions(this, this.transicionActual, this.textoF, this.teclaF);
-  }
+  this.transicionActual = updateTransitions(
+    this,
+    this.jugador,
+    this.transicionActual,
+    this.textoF,
+    this.teclaF,
+  );
+}
 }
