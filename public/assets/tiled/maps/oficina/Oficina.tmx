@@ -107,6 +107,7 @@
   <object id="39" name="PuertaAlPasillo" x="192.404" y="5.92842" width="30.9895" height="50.3916">
    <properties>
     <property name="goTo" value="Pasillo"/>
+    <property name="prompt" value="[ F ] SALIR AL PASILLO"/>
     <property name="spawn" value="desdeOficina"/>
    </properties>
   </object>

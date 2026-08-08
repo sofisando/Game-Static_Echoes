@@ -15,13 +15,18 @@ import {
 
 import { createPlayerAnimations } from "../animations/playerAnimations";
 import { preloadPlayerAssets } from "../data/personajes/player";
-import { createInteractionPrompt } from "../systems/ui";
 import { cameraConfig } from "../systems/camera";
 import { createPlayer, updatePlayer } from "../entities/Player";
 import { getSceneData } from "../systems/sceneData";
 
 import { MapConfig } from "../types/map";
 import { ObjetoTransicion } from "../types/transition";
+
+import {
+  DialogueBox,
+  createInteractionPrompt,
+  createDialogueBox,
+} from "../systems/ui";
 
 export abstract class BaseScene extends Scene {
   protected jugador!: Phaser.Physics.Arcade.Sprite;
@@ -35,12 +40,13 @@ export abstract class BaseScene extends Scene {
   protected teclaF!: Phaser.Input.Keyboard.Key;
   protected textoF!: Phaser.GameObjects.Text;
 
+  //me quedé acáaaa
+
+  protected dialogo!: DialogueBox;
+
   private mapConfig: MapConfig;
 
-  constructor(
-    sceneKey: string,
-    mapConfig: MapConfig,
-  ) {
+  constructor(sceneKey: string, mapConfig: MapConfig) {
     super(sceneKey);
 
     this.mapConfig = mapConfig;
@@ -56,49 +62,32 @@ export abstract class BaseScene extends Scene {
     // MAPA
     // =========================
 
-    const map = createMap(
-      this,
-      this.mapConfig,
-    );
+    const map = createMap(this, this.mapConfig);
 
-    const tilesets = addTilesets(
-      map,
-      this.mapConfig,
-    );
+    const tilesets = addTilesets(map, this.mapConfig);
 
-    createLayers(
-      map,
-      tilesets,
-      this.mapConfig,
-    );
+    createLayers(map, tilesets, this.mapConfig);
 
     // =========================
     // COLISIONES
     // =========================
 
-    this.colisiones = createCollisionGroup(
-      this,
-      map,
-    );
+    this.colisiones = createCollisionGroup(this, map);
 
     // =========================
     // TRANSICIONES
     // =========================
 
-    this.transiciones = createTransitionGroup(
-      this,
-      map,
-    );
+    this.transiciones = createTransitionGroup(this, map);
 
     // =========================
     // UI
     // =========================
 
     this.textoF = createInteractionPrompt(this);
+    this.dialogo = createDialogueBox(this);
 
-    this.teclaF = this.input.keyboard!.addKey(
-      Input.Keyboard.KeyCodes.F,
-    );
+    this.teclaF = this.input.keyboard!.addKey(Input.Keyboard.KeyCodes.F);
 
     // =========================
     // ANIMACIONES
@@ -112,23 +101,13 @@ export abstract class BaseScene extends Scene {
 
     const { spawn = "Spawn" } = getSceneData(this);
 
-    this.jugador = createPlayer(
-      this,
-      map,
-      this.colisiones,
-      spawn,
-    );
+    this.jugador = createPlayer(this, map, this.colisiones, spawn);
 
     // =========================
     // MUNDO
     // =========================
 
-    this.physics.world.setBounds(
-      0,
-      0,
-      map.widthInPixels,
-      map.heightInPixels,
-    );
+    this.physics.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
 
     this.jugador.setCollideWorldBounds(true);
 
@@ -136,45 +115,26 @@ export abstract class BaseScene extends Scene {
     // CÁMARA
     // =========================
 
-    cameraConfig(
-      this,
-      this.jugador,
-      map,
-    );
+    cameraConfig(this, this.jugador, map);
 
     // =========================
     // INPUT
     // =========================
 
-    this.cursores =
-      this.input.keyboard!.createCursorKeys();
+    this.cursores = this.input.keyboard!.createCursorKeys();
 
     // =========================
     // TRANSICIONES
     // =========================
 
-    this.physics.add.overlap(
-      this.jugador,
-      this.transiciones,
-      (_, zona) => {
-        this.transicionActual =
-          zona as ObjetoTransicion;
-      },
-    );
+    this.physics.add.overlap(this.jugador, this.transiciones, (_, zona) => {
+      this.transicionActual = zona as ObjetoTransicion;
+    });
   }
 
   update() {
-    updatePlayer(
-      this.jugador,
-      this.cursores,
-    );
+    updatePlayer(this.jugador, this.cursores);
 
-    updateTransitions(
-      this,
-      this.jugador,
-      this.transicionActual,
-      this.textoF,
-      this.teclaF,
-    );
+    updateTransitions(this, this.transicionActual, this.textoF, this.teclaF);
   }
 }

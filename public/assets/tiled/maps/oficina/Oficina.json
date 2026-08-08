@@ -280,6 +280,11 @@
                          "value":"Pasillo"
                         }, 
                         {
+                         "name":"prompt",
+                         "type":"string",
+                         "value":"[ F ] SALIR AL PASILLO"
+                        }, 
+                        {
                          "name":"spawn",
                          "type":"string",
                          "value":"desdeOficina"

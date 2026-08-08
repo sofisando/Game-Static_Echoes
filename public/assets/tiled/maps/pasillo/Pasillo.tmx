@@ -74,6 +74,7 @@
   <object id="7" name="PuertaAOficina" x="49" y="6.33333" width="28.6667" height="46.6667">
    <properties>
     <property name="goTo" value="Oficina"/>
+    <property name="prompt" value="[ F ] ENTRAR A LA OFICINA"/>
     <property name="spawn" value="desdePasillo"/>
    </properties>
   </object>

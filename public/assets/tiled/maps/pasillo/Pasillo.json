@@ -230,6 +230,11 @@
                          "value":"Oficina"
                         }, 
                         {
+                         "name":"prompt",
+                         "type":"string",
+                         "value":"[ F ] ENTRAR A LA OFICINA"
+                        }, 
+                        {
                          "name":"spawn",
                          "type":"string",
                          "value":"desdePasillo"
