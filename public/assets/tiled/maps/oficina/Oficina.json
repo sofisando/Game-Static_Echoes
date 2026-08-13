@@ -301,9 +301,48 @@
          "visible":true,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":9,
+         "name":"Interactivos",
+         "objects":[
+                {
+                 "height":9.75,
+                 "id":41,
+                 "name":"Escritorio",
+                 "opacity":1,
+                 "properties":[
+                        {
+                         "name":"interactionId",
+                         "type":"string",
+                         "value":"escritorio_oficina"
+                        }, 
+                        {
+                         "name":"prompt",
+                         "type":"string",
+                         "value":"Inspeccionar"
+                        }, 
+                        {
+                         "name":"tipo",
+                         "type":"string",
+                         "value":"inspeccionar"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":9.75,
+                 "x":70.75,
+                 "y":84.5
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":9,
- "nextobjectid":40,
+ "nextlayerid":10,
+ "nextobjectid":42,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.12.2",

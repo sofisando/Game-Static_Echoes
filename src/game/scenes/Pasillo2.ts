@@ -41,7 +41,7 @@ export class PasilloScene extends Scene {
     private indiceDialogoActual: number = 0;
 
     constructor() {
-        super('Pasillo'); // ID único de la escena
+        super('Pasillo2'); // ID único de la escena
     }
 
     preload() {

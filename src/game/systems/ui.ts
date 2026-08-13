@@ -1,4 +1,5 @@
 import { ObjetoTransicion } from "../types/transition";
+import { ObjetoInteractivo } from "../types/interactive";
 
 export function createInteractionPrompt(scene: Phaser.Scene) {
   return scene.add
@@ -33,6 +34,27 @@ export function updateInteractionPrompt(
   texto.setPosition(
     transicion.x,
     transicion.y - transicion.height / 2 + 2,
+  );
+
+  texto.setVisible(true);
+}
+
+export function updateInteractivePrompt(
+  texto: Phaser.GameObjects.Text,
+  interactivo: ObjetoInteractivo | null,
+) {
+  if (!interactivo) {
+    texto.setVisible(false);
+    return;
+  }
+
+  texto.setText(
+    `[ E ] ${interactivo.interactivo.prompt ?? "ACCION"}`
+  );
+
+  texto.setPosition(
+    interactivo.x,
+    interactivo.y - interactivo.height / 2 + 2,
   );
 
   texto.setVisible(true);
