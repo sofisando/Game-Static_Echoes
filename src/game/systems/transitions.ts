@@ -1,7 +1,7 @@
 import { Scene, Input } from "phaser";
 import { ObjetoTransicion, ZonaTransicion } from "../types/transition";
 import { getProperty } from "./tiled";
-import { updateInteractionPrompt } from "./ui";
+import { updateTransitionPrompt } from "./ui";
 
 export function createTransitionGroup(
   scene: Scene,
@@ -65,7 +65,7 @@ export function updateTransitions(
     }
   }
 
-  updateInteractionPrompt(
+  updateTransitionPrompt(
     textoF,
     transicionActual,
   );

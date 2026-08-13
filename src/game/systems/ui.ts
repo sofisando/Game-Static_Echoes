@@ -5,7 +5,7 @@ export function createInteractionPrompt(scene: Phaser.Scene) {
   return scene.add
     .text(0, 0, "", {
       fontFamily: "Courier",
-      fontSize: "6px",
+      fontSize: "5px",
       color: "#00ffcc",
       backgroundColor: "#000000dd",
       padding: {
@@ -13,12 +13,13 @@ export function createInteractionPrompt(scene: Phaser.Scene) {
         y: 2,
       },
     })
+    .setResolution(3)
     .setOrigin(0.5)
     .setVisible(false)
     .setDepth(3000);
 }
 
-export function updateInteractionPrompt(
+export function updateTransitionPrompt(
   texto: Phaser.GameObjects.Text,
   transicion: ObjetoTransicion | null,
 ) {
@@ -26,6 +27,8 @@ export function updateInteractionPrompt(
     texto.setVisible(false);
     return;
   }
+
+  texto.setColor("#ffff00");
 
   texto.setText(
     transicion.transicion.prompt ?? "[ F ] ACCION"
@@ -47,6 +50,8 @@ export function updateInteractivePrompt(
     texto.setVisible(false);
     return;
   }
+
+  texto.setColor("#00ffcc");
 
   texto.setText(
     `[ E ] ${interactivo.interactivo.prompt ?? "ACCION"}`
