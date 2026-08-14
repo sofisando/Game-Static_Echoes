@@ -32,6 +32,8 @@ import {
 import { ObjetoInteractivo } from "../types/interactive";
 
 import {
+  applyInteractionEffects,
+  canInteract,
   createInteractionGroup,
   updateInteractions,
 } from "../systems/interaction";
@@ -154,7 +156,10 @@ export abstract class BaseScene extends Scene {
     // =========================
 
     this.dialogo = createDialogueBox(this);
-    this.dialogue = createDialogueManager(this.dialogo);
+
+    this.dialogue = createDialogueManager(this.dialogo, (interactivo) => {
+      applyInteractionEffects(interactivo);
+    });
 
     this.teclaE.on("down", () => {
       if (this.dialogue.isActive()) {
@@ -166,35 +171,36 @@ export abstract class BaseScene extends Scene {
         return;
       }
 
-      this.dialogue.start(this.interactivoActual);
+      const puedeInteractuar = canInteract(
+        this.interactivoActual.interactivo.requirements,
+      );
+
+      this.dialogue.start(this.interactivoActual, puedeInteractuar);
     });
   }
 
   update() {
-  if (!this.dialogue.isActive()) {
-    updatePlayer(this.jugador, this.cursores);
-  }
+    if (!this.dialogue.isActive()) {
+      updatePlayer(this.jugador, this.cursores);
+    }
 
-  this.transicionActual = updateTransitions(
-    this,
-    this.jugador,
-    this.transicionActual,
-    this.textoF,
-    this.teclaF,
-  );
-
-  if (this.dialogue.isActive()) {
-    this.textoE.setVisible(false);
-  } else {
-    this.interactivoActual = updateInteractions(
+    this.transicionActual = updateTransitions(
+      this,
       this.jugador,
-      this.interactivos,
+      this.transicionActual,
+      this.textoF,
+      this.teclaF,
     );
 
-    updateInteractivePrompt(
-      this.textoE,
-      this.interactivoActual,
-    );
+    if (this.dialogue.isActive()) {
+      this.textoE.setVisible(false);
+    } else {
+      this.interactivoActual = updateInteractions(
+        this.jugador,
+        this.interactivos,
+      );
+
+      updateInteractivePrompt(this.textoE, this.interactivoActual);
+    }
   }
-}
 }

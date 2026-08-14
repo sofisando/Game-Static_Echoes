@@ -339,6 +339,87 @@
                  "width":9.75,
                  "x":70.75,
                  "y":84.5
+                }, 
+                {
+                 "height":6.75,
+                 "id":42,
+                 "name":"Libro",
+                 "opacity":1,
+                 "properties":[
+                        {
+                         "name":"dialogo",
+                         "type":"string",
+                         "value":"Un libro muy pesado | Un momento... | ...una nota entre las p\u00e1ginas |Parece importante."
+                        }, 
+                        {
+                         "name":"effects_clues",
+                         "type":"string",
+                         "value":"libro_oficina"
+                        }, 
+                        {
+                         "name":"interactionId",
+                         "type":"string",
+                         "value":"libro_oficina"
+                        }, 
+                        {
+                         "name":"prompt",
+                         "type":"string",
+                         "value":"Tomar libro"
+                        }, 
+                        {
+                         "name":"tipo",
+                         "type":"string",
+                         "value":"recoger"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":2,
+                 "x":33.5,
+                 "y":31.25
+                }, 
+                {
+                 "height":6.75,
+                 "id":43,
+                 "name":"Caja fuerte",
+                 "opacity":1,
+                 "properties":[
+                        {
+                         "name":"dialogo",
+                         "type":"string",
+                         "value":"La nota tiene algo que ver con esta caja fuerte"
+                        }, 
+                        {
+                         "name":"dialogoLocked",
+                         "type":"string",
+                         "value":"No s\u00e9 c\u00f3mo abrirla."
+                        }, 
+                        {
+                         "name":"effects_flags",
+                         "type":"string",
+                         "value":"caja_fuerte_abierta"
+                        }, 
+                        {
+                         "name":"interactionId",
+                         "type":"string",
+                         "value":"caja_fuerte"
+                        }, 
+                        {
+                         "name":"requirements_clues",
+                         "type":"string",
+                         "value":"libro_oficina"
+                        }, 
+                        {
+                         "name":"tipo",
+                         "type":"string",
+                         "value":"usar"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":10.25,
+                 "x":89.25,
+                 "y":49
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -347,7 +428,7 @@
          "y":0
         }],
  "nextlayerid":10,
- "nextobjectid":42,
+ "nextobjectid":44,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.12.2",

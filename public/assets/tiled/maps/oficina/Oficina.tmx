@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="16" height="10" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="42">
+<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="16" height="10" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="44">
  <editorsettings>
   <export target="Oficina.json" format="json"/>
  </editorsettings>
@@ -119,6 +119,25 @@
     <property name="interactionId" value="escritorio_oficina"/>
     <property name="prompt" value="Inspeccionar"/>
     <property name="tipo" value="inspeccionar"/>
+   </properties>
+  </object>
+  <object id="42" name="Libro" x="33.5" y="31.25" width="2" height="6.75">
+   <properties>
+    <property name="dialogo" value="Un libro muy pesado | Un momento... | ...una nota entre las páginas |Parece importante."/>
+    <property name="effects_clues" value="libro_oficina"/>
+    <property name="interactionId" value="libro_oficina"/>
+    <property name="prompt" value="Tomar libro"/>
+    <property name="tipo" value="recoger"/>
+   </properties>
+  </object>
+  <object id="43" name="Caja fuerte" x="89.25" y="49" width="10.25" height="6.75">
+   <properties>
+    <property name="dialogo" value="La nota tiene algo que ver con esta caja fuerte"/>
+    <property name="dialogoLocked" value="No sé cómo abrirla."/>
+    <property name="effects_flags" value="caja_fuerte_abierta"/>
+    <property name="interactionId" value="caja_fuerte"/>
+    <property name="requirements_clues" value="libro_oficina"/>
+    <property name="tipo" value="usar"/>
    </properties>
   </object>
  </objectgroup>

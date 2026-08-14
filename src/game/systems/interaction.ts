@@ -1,5 +1,4 @@
 import { Math as PhaserMath, Physics, Scene, Types } from "phaser";
-
 import {
   DatosInteractivo,
   ObjetoInteractivo,
@@ -7,7 +6,15 @@ import {
   EfectosInteraccion,
 } from "../types/interactive";
 
-import { hasClue, hasFlag, hasItem } from "../data/bucleState";
+import {
+  addClue,
+  addFlag,
+  addItem,
+  addInteraction,
+  hasClue,
+  hasFlag,
+  hasItem,
+} from "../data/bucleState";
 
 function obtenerPropiedad(
   propiedades: Types.Tilemaps.TiledObject["properties"],
@@ -200,4 +207,30 @@ export function canInteract(requirements?: RequisitosInteraccion): boolean {
   }
 
   return true;
+}
+
+export function applyInteractionEffects(
+  interaction: ObjetoInteractivo,
+): void {
+  const datos = interaction.interactivo;
+
+  if (!datos.effects) {
+    return;
+  }
+
+  const { items, clues, flags } = datos.effects;
+
+  items?.forEach((item) => {
+    addItem(item);
+  });
+
+  clues?.forEach((clue) => {
+    addClue(clue);
+  });
+
+  flags?.forEach((flag) => {
+    addFlag(flag);
+  });
+
+  addInteraction(datos.interactionId);
 }

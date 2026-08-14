@@ -8,35 +8,43 @@ export interface DialogueState {
 }
 
 export interface DialogueManager {
-  start: (interactivo: ObjetoInteractivo) => void;
+  start: (interactivo: ObjetoInteractivo, puedeInteractuar: boolean) => void;
 
   advance: () => void;
-
   close: () => void;
-
   isActive: () => boolean;
 }
 
-export function createDialogueManager(box: DialogueBox): DialogueManager {
+export function createDialogueManager(
+  box: DialogueBox,
+  onComplete: (interactivo: ObjetoInteractivo) => void,
+): DialogueManager {
+  let interactivoActual: ObjetoInteractivo | null = null;
+  let interaccionPermitida = false;
   const estado: DialogueState = {
     activo: false,
     lineas: [],
     indice: 0,
   };
 
-  function start(interactivo: ObjetoInteractivo) {
+  function start(interactivo: ObjetoInteractivo, puedeInteractuar: boolean) {
     const datos = interactivo.interactivo;
-    const lineas = datos.dialogo ?? [];
+
+    const lineas = puedeInteractuar
+      ? (datos.dialogo ?? [])
+      : (datos.dialogoLocked ?? []);
 
     if (lineas.length === 0) {
       return;
     }
 
+    interactivoActual = interactivo;
+    interaccionPermitida = puedeInteractuar;
+
     estado.activo = true;
     estado.lineas = lineas;
     estado.indice = 0;
 
-    // Usamos directamente el nombre del objeto de Tiled.
     box.nombre.setText(interactivo.name || "");
 
     mostrarLinea();
@@ -64,6 +72,13 @@ export function createDialogueManager(box: DialogueBox): DialogueManager {
   }
 
   function close() {
+    if (interactivoActual && interaccionPermitida) {
+      onComplete(interactivoActual);
+    }
+
+    interactivoActual = null;
+    interaccionPermitida = false;
+
     estado.activo = false;
     estado.lineas = [];
     estado.indice = 0;
