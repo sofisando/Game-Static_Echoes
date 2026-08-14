@@ -25,12 +25,8 @@ export function createDialogueManager(box: DialogueBox): DialogueManager {
   };
 
   function start(interactivo: ObjetoInteractivo) {
-    console.log("START DIALOGO:", interactivo);
     const datos = interactivo.interactivo;
-
     const lineas = datos.dialogo ?? [];
-    
-    console.log("LINEAS:", lineas);
 
     if (lineas.length === 0) {
       return;
@@ -63,14 +59,8 @@ export function createDialogueManager(box: DialogueBox): DialogueManager {
 
   function mostrarLinea() {
     const linea = estado.lineas[estado.indice];
-
-    console.log("MOSTRANDO DIALOGO:", linea);
-    console.log("CONTAINER VISIBLE ANTES:", box.container.visible);
-
     box.texto.setText(linea);
-
     box.container.setVisible(true);
-    console.log("CONTAINER VISIBLE DESPUES:", box.container.visible);
   }
 
   function close() {
