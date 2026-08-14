@@ -314,6 +314,11 @@
                  "opacity":1,
                  "properties":[
                         {
+                         "name":"dialogo",
+                         "type":"string",
+                         "value":"Que buena mesa che | me la llevo pa casa"
+                        }, 
+                        {
                          "name":"interactionId",
                          "type":"string",
                          "value":"escritorio_oficina"

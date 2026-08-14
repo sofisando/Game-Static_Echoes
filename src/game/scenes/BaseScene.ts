@@ -35,6 +35,7 @@ import {
   createInteractionGroup,
   updateInteractions,
 } from "../systems/interaction";
+import { DialogueManager, createDialogueManager } from "../systems/dialogue";
 
 export abstract class BaseScene extends Scene {
   protected jugador!: Phaser.Physics.Arcade.Sprite;
@@ -49,6 +50,7 @@ export abstract class BaseScene extends Scene {
   protected textoF!: Phaser.GameObjects.Text;
 
   protected dialogo!: DialogueBox;
+  protected dialogue!: DialogueManager;
 
   protected interactivos!: Phaser.Physics.Arcade.StaticGroup;
   protected interactivoActual: ObjetoInteractivo | null = null;
@@ -102,8 +104,6 @@ export abstract class BaseScene extends Scene {
     this.textoF = createInteractionPrompt(this);
     this.textoE = createInteractionPrompt(this);
 
-    this.dialogo = createDialogueBox(this);
-
     this.teclaF = this.input.keyboard!.addKey(Input.Keyboard.KeyCodes.F);
     this.teclaE = this.input.keyboard!.addKey(Input.Keyboard.KeyCodes.E);
 
@@ -148,24 +148,53 @@ export abstract class BaseScene extends Scene {
     this.physics.add.overlap(this.jugador, this.transiciones, (_, zona) => {
       this.transicionActual = zona as ObjetoTransicion;
     });
+
+    //==========================
+    // DIÁLOGO
+    // =========================
+
+    this.dialogo = createDialogueBox(this);
+    this.dialogue = createDialogueManager(this.dialogo);
+
+    this.teclaE.on("down", () => {
+      if (this.dialogue.isActive()) {
+        this.dialogue.advance();
+        return;
+      }
+
+      if (!this.interactivoActual) {
+        return;
+      }
+
+      this.dialogue.start(this.interactivoActual);
+    });
   }
 
   update() {
+  if (!this.dialogue.isActive()) {
     updatePlayer(this.jugador, this.cursores);
+  }
 
-    this.transicionActual = updateTransitions(
-      this,
-      this.jugador,
-      this.transicionActual,
-      this.textoF,
-      this.teclaF,
-    );
+  this.transicionActual = updateTransitions(
+    this,
+    this.jugador,
+    this.transicionActual,
+    this.textoF,
+    this.teclaF,
+  );
 
+  if (this.dialogue.isActive()) {
+    this.textoE.setVisible(false);
+  } else {
     this.interactivoActual = updateInteractions(
       this.jugador,
       this.interactivos,
     );
 
-    updateInteractivePrompt(this.textoE, this.interactivoActual);
+    updateInteractivePrompt(
+      this.textoE,
+      this.interactivoActual,
+    );
   }
+}
 }

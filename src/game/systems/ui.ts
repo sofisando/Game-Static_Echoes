@@ -30,14 +30,9 @@ export function updateTransitionPrompt(
 
   texto.setColor("#ffff00");
 
-  texto.setText(
-    transicion.transicion.prompt ?? "[ F ] ACCION"
-  );
+  texto.setText(transicion.transicion.prompt ?? "[ F ] ACCION");
 
-  texto.setPosition(
-    transicion.x,
-    transicion.y - transicion.height / 2 + 2,
-  );
+  texto.setPosition(transicion.x, transicion.y - transicion.height / 2 + 2);
 
   texto.setVisible(true);
 }
@@ -53,14 +48,9 @@ export function updateInteractivePrompt(
 
   texto.setColor("#00ffcc");
 
-  texto.setText(
-    `[ E ] ${interactivo.interactivo.prompt ?? "ACCION"}`
-  );
+  texto.setText(`[ E ] ${interactivo.interactivo.prompt ?? "ACCION"}`);
 
-  texto.setPosition(
-    interactivo.x,
-    interactivo.y - interactivo.height / 2 + 2,
-  );
+  texto.setPosition(interactivo.x, interactivo.y - interactivo.height / 2 + 2);
 
   texto.setVisible(true);
 }
@@ -74,35 +64,52 @@ export interface DialogueBox {
 export function createDialogueBox(
   scene: Phaser.Scene,
 ): DialogueBox {
+  const camera = scene.cameras.main;
+
+  // ==========================================
+  // CONFIGURACIÓN VISUAL
+  // ==========================================
+
+  const ancho = 720;
+  const alto = 100;
+
+  const margenInferior = 10;
+
+  // ==========================================
+  // CONTAINER
+  // ==========================================
+
   const container = scene.add
-    .container(400, 530)
-    .setVisible(false)
-    .setDepth(4000);
+    .container(0, 0)
+    .setDepth(4000)
+    .setVisible(false);
 
-  container.setScrollFactor(0);
+  // ==========================================
+  // FONDO
+  // ==========================================
 
-  const fondo = scene.add.graphics();
-
-  fondo.fillStyle(0x0a0a0f, 0.98);
-  fondo.lineStyle(2, 0x00ffcc, 1);
-
-  fondo.fillRect(
-    -380,
-    -50,
-    760,
-    100,
+  const fondo = scene.add.rectangle(
+    0,
+    0,
+    ancho,
+    alto,
+    0x0a0a0f,
+    0.98,
   );
 
-  fondo.strokeRect(
-    -380,
-    -50,
-    760,
-    100,
+  fondo.setStrokeStyle(
+    2,
+    0x00ffcc,
+    1,
   );
+
+  // ==========================================
+  // NOMBRE
+  // ==========================================
 
   const nombre = scene.add.text(
-    -360,
-    -38,
+    -ancho / 2 + 20,
+    -alto / 2 + 12,
     "",
     {
       fontFamily: "Courier",
@@ -112,25 +119,33 @@ export function createDialogueBox(
     },
   );
 
+  // ==========================================
+  // TEXTO
+  // ==========================================
+
   const texto = scene.add.text(
-    -360,
-    -12,
+    -ancho / 2 + 20,
+    -alto / 2 + 38,
     "",
     {
       fontFamily: "Courier",
       fontSize: "16px",
       color: "#ffffff",
       wordWrap: {
-        width: 720,
+        width: ancho - 40,
         useAdvancedWrap: true,
       },
     },
   );
 
+  // ==========================================
+  // HINT
+  // ==========================================
+
   const hint = scene.add
     .text(
-      360,
-      32,
+      ancho / 2 - 15,
+      alto / 2 - 15,
       "[E] Avanzar",
       {
         fontFamily: "Courier",
@@ -140,12 +155,66 @@ export function createDialogueBox(
     )
     .setOrigin(1, 0.5);
 
+  // ==========================================
+  // AGREGAMOS LOS HIJOS
+  // ==========================================
+
   container.add([
     fondo,
     nombre,
     texto,
     hint,
   ]);
+
+  // ==========================================
+  // MUY IMPORTANTE
+  // ==========================================
+  //
+  // El tercer parámetro hace que los hijos
+  // también tengan scrollFactor 0.
+  //
+  container.setScrollFactor(
+    0,
+    0,
+    true,
+  );
+
+  // ==========================================
+  // COMPENSAR EL ZOOM
+  // ==========================================
+
+  const zoom = camera.zoom || 1;
+
+  container.setScale(1 / zoom);
+
+  // ==========================================
+  // POSICIÓN FIJA EN PANTALLA
+  // ==========================================
+  //
+  // Queremos que el centro del box esté
+  // a "margenInferior" del borde inferior.
+  //
+  const pantallaX = camera.width / 2;
+
+  const pantallaY =
+    camera.height -
+    margenInferior -
+    alto / 2;
+
+  /*
+   * Como la cámara tiene zoom, desplazamos
+   * la posición respecto al centro de la cámara.
+   */
+
+  const x =
+    camera.centerX +
+    (pantallaX - camera.centerX) / zoom;
+
+  const y =
+    camera.centerY +
+    (pantallaY - camera.centerY) / zoom;
+
+  container.setPosition(x, y);
 
   return {
     container,

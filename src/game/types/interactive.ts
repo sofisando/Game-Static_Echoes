@@ -22,7 +22,6 @@ export interface DatosInteractivo {
   tipo: TipoInteractivo;
 
   prompt?: string;
-  nombre?: string;
 
   dialogo?: string[];
   dialogoLocked?: string[];

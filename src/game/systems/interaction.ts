@@ -4,7 +4,7 @@ import {
   DatosInteractivo,
   ObjetoInteractivo,
   RequisitosInteraccion,
-  //   EfectosInteraccion,
+  EfectosInteraccion,
 } from "../types/interactive";
 
 import { hasClue, hasFlag, hasItem } from "../data/bucleState";
@@ -21,6 +21,61 @@ function obtenerPropiedad(
   );
 
   return propiedad?.value;
+}
+
+function obtenerArrayPropiedad(
+  propiedades: Types.Tilemaps.TiledObject["properties"],
+  nombre: string,
+): string[] | undefined {
+  const valor = obtenerPropiedad(propiedades, nombre);
+
+  if (typeof valor !== "string") {
+    return undefined;
+  }
+
+  return valor
+    .split("|")
+    .map((texto) => texto.trim())
+    .filter(Boolean);
+}
+
+function obtenerRequisitos(
+  propiedades: Types.Tilemaps.TiledObject["properties"],
+): RequisitosInteraccion | undefined {
+  const items = obtenerArrayPropiedad(propiedades, "requirements_items");
+
+  const clues = obtenerArrayPropiedad(propiedades, "requirements_clues");
+
+  const flags = obtenerArrayPropiedad(propiedades, "requirements_flags");
+
+  if (!items && !clues && !flags) {
+    return undefined;
+  }
+
+  return {
+    items,
+    clues,
+    flags,
+  };
+}
+function obtenerEfectos(
+  propiedades: Types.Tilemaps.TiledObject["properties"],
+): EfectosInteraccion | undefined {
+  const items = obtenerArrayPropiedad(propiedades, "effects_items");
+
+  const clues = obtenerArrayPropiedad(propiedades, "effects_clues");
+
+  const flags = obtenerArrayPropiedad(propiedades, "effects_flags");
+
+  if (!items && !clues && !flags) {
+    return undefined;
+  }
+
+  return {
+    items,
+    clues,
+    flags,
+  };
 }
 
 export function createInteractionGroup(
@@ -62,7 +117,15 @@ export function createInteractionGroup(
         | string
         | undefined,
 
-      nombre: objeto.name || undefined,
+      dialogo: obtenerArrayPropiedad(objeto.properties, "dialogo"),
+
+      dialogoLocked: obtenerArrayPropiedad(objeto.properties, "dialogoLocked"),
+
+      requirements: obtenerRequisitos(objeto.properties),
+
+      effects: obtenerEfectos(objeto.properties),
+
+      once: obtenerPropiedad(objeto.properties, "once") as boolean | undefined,
     };
 
     const rect = scene.add.rectangle(
@@ -83,7 +146,7 @@ export function createInteractionGroup(
 }
 
 export function updateInteractions(
-  jugador:Physics.Arcade.Sprite,
+  jugador: Physics.Arcade.Sprite,
   interactivos: Physics.Arcade.StaticGroup,
 ): ObjetoInteractivo | null {
   let interactivoCercano: ObjetoInteractivo | null = null;
