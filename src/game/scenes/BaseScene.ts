@@ -5,6 +5,7 @@ import {
   createCollisionGroup,
   createLayers,
   createMap,
+  createMapObjects,
   preloadMap,
 } from "../systems/tilemap";
 
@@ -84,6 +85,9 @@ export abstract class BaseScene extends Scene {
 
     createLayers(map, tilesets, this.mapConfig);
 
+    const objetosMapa = createMapObjects(this, map, this.mapConfig, "Muebles");
+
+    console.log("OBJETOS DE MUEBLES:", objetosMapa);
     // =========================
     // COLISIONES
     // =========================
@@ -183,6 +187,8 @@ export abstract class BaseScene extends Scene {
     if (!this.dialogue.isActive()) {
       updatePlayer(this.jugador, this.cursores);
     }
+
+    this.jugador.setDepth(this.jugador.y + this.jugador.displayHeight / 2);
 
     this.transicionActual = updateTransitions(
       this,

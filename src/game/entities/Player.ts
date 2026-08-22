@@ -29,8 +29,8 @@ export function createPlayer(
 
   scene.physics.add.collider(jugador, colisiones);
 
-  jugador.body!.setSize(26, 10);
-  jugador.body!.setOffset(50, 120);
+  jugador.body!.setSize(26, 11);
+  jugador.body!.setOffset(48, 120);
 
   jugador.setScale(0.6);
   jugador.setOrigin(0.5, 0.82);

@@ -35,11 +35,132 @@ export function createLayers(
   config: MapConfig,
 ) {
   config.layers.forEach((layer) => {
-    map.createLayer(
+    const tileLayer = map.createLayer(
       layer.name,
       layer.tilesets.map((nombre) => tilesets.get(nombre)!),
     );
+
+    tileLayer?.setDepth(0);
   });
+}
+
+// ======================================================
+// OBJETOS GRÁFICOS DE TILED
+// ======================================================
+
+export function createMapObjects(
+  scene: Phaser.Scene,
+  map: Phaser.Tilemaps.Tilemap,
+  config: MapConfig,
+  objectLayerName: string,
+) {
+  const layer = map.getObjectLayer(objectLayerName);
+
+  if (!layer) {
+    console.warn(`No existe la capa de objetos: ${objectLayerName}`);
+    return [];
+  }
+
+  const sprites: Phaser.GameObjects.Sprite[] = [];
+
+  layer.objects.forEach((obj) => {
+    if (!obj.gid) {
+      return;
+    }
+
+    const gid = obj.gid;
+
+    // Buscar qué tileset contiene este GID
+    let tilesetEncontrado: Phaser.Tilemaps.Tileset | undefined;
+    let tilesetConfig:
+      | {
+          tiledName: string;
+          key: string;
+          image: string;
+        }
+      | undefined;
+
+    for (let i = 0; i < map.tilesets.length; i++) {
+      const ts = map.tilesets[i];
+
+      if (gid >= ts.firstgid && gid < ts.firstgid + ts.total) {
+        tilesetEncontrado = ts;
+
+        tilesetConfig = config.tilesets.find((t) => t.tiledName === ts.name);
+
+        break;
+      }
+    }
+
+    if (!tilesetEncontrado || !tilesetConfig) {
+      console.warn(
+        `No se encontró tileset para GID ${gid} en objeto "${obj.name}"`,
+      );
+      return;
+    }
+
+    const tileId = gid - tilesetEncontrado.firstgid;
+
+    const tileWidth = tilesetEncontrado.tileWidth;
+    const tileHeight = tilesetEncontrado.tileHeight;
+
+    const columns = tilesetEncontrado.columns;
+
+    if (!columns || !tileWidth || !tileHeight) {
+      console.warn(
+        `El tileset "${tilesetEncontrado.name}" no tiene información suficiente.`,
+      );
+      return;
+    }
+
+    const column = tileId % columns;
+    const row = Math.floor(tileId / columns);
+
+    const margin = tilesetEncontrado.tileMargin;
+    const spacing = tilesetEncontrado.tileSpacing;
+
+    const x = margin + column * (tileWidth + spacing);
+
+    const y = margin + row * (tileHeight + spacing);
+
+    const textureKey = tilesetConfig.key;
+
+    const texture = scene.textures.get(textureKey);
+
+    if (!texture) {
+      console.warn(
+        `No se encontró la textura "${textureKey}" para "${obj.name}"`,
+      );
+      return;
+    }
+
+    // Crear un frame temporal con el recorte del tile
+    const frameName = `obj-${objectLayerName}-${obj.id}`;
+
+    if (!texture.has(frameName)) {
+      texture.add(frameName, 0, x, y, tileWidth, tileHeight);
+    }
+
+    const sprite = scene.add.sprite(
+      obj.x! + tileWidth / 2,
+      obj.y! - tileHeight / 2,
+      textureKey,
+      frameName,
+    );
+
+    sprite.setName(obj.name || "");
+
+    // Y-sort
+    sprite.setDepth(obj.y!);
+
+    if (obj.rotation) {
+      sprite.setRotation(Phaser.Math.DegToRad(obj.rotation));
+    }
+
+    sprites.push(sprite);
+  });
+
+  return sprites;
 }
 
 //-----------------------------------------------
@@ -71,8 +192,3 @@ export function createCollisionGroup(
 
   return grupo;
 }
-// createLayers()
-// createCollisionObjects()
-// createTransitionObjects()
-// findSpawn()
-// getTilesets()

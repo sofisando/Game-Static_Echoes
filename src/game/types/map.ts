@@ -12,7 +12,6 @@ export interface LayerConfig {
 export interface MapConfig {
   key: string;
   json: string;
-
   tilesets: TilesetConfig[];
   layers: LayerConfig[];
 }
