@@ -357,6 +357,11 @@
                          "value":"libro_oficina"
                         }, 
                         {
+                         "name":"effects_flags",
+                         "type":"string",
+                         "value":"puerta_abierta"
+                        }, 
+                        {
                          "name":"interactionId",
                          "type":"string",
                          "value":"libro_oficina"
@@ -427,8 +432,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":10,
- "nextobjectid":44,
+ "nextlayerid":12,
+ "nextobjectid":48,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.12.2",

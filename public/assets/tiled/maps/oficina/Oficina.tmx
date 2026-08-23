@@ -125,6 +125,7 @@
    <properties>
     <property name="dialogo" value="Un libro muy pesado | Un momento... | ...una nota entre las páginas |Parece importante."/>
     <property name="effects_clues" value="libro_oficina"/>
+    <property name="effects_flags" value="puerta_abierta"/>
     <property name="interactionId" value="libro_oficina"/>
     <property name="prompt" value="Tomar libro"/>
     <property name="tipo" value="recoger"/>

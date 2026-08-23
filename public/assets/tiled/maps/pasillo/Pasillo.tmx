@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="16" height="6" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="16">
+<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="16" height="6" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="18">
  <editorsettings>
   <export target="Pasillo.json" format="json"/>
  </editorsettings>
@@ -57,7 +57,15 @@
 </data>
  </layer>
  <objectgroup id="8" name="Muebles">
-  <object id="12" name="MesitaCopada" gid="1111" x="78.3333" y="106" width="48" height="48"/>
+  <object id="12" name="MesitaCopada" gid="1111" x="78.3333" y="106" width="48" height="48">
+   <properties>
+    <property name="dynamicId" value="puerta_prueba"/>
+    <property name="falseGid" type="int" value="1111"/>
+    <property name="stateFlag" value="puerta_abierta"/>
+    <property name="trueGid" type="int" value="1108"/>
+   </properties>
+  </object>
+  <object id="17" gid="1108" x="32.6667" y="104.667" width="48" height="48"/>
  </objectgroup>
  <objectgroup id="5" name="Colisiones">
   <object id="1" x="0.333333" y="0.333333" width="256" height="50"/>

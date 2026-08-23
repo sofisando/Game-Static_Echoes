@@ -83,12 +83,46 @@
                  "id":12,
                  "name":"MesitaCopada",
                  "opacity":1,
+                 "properties":[
+                        {
+                         "name":"dynamicId",
+                         "type":"string",
+                         "value":"puerta_prueba"
+                        }, 
+                        {
+                         "name":"falseGid",
+                         "type":"int",
+                         "value":1111
+                        }, 
+                        {
+                         "name":"stateFlag",
+                         "type":"string",
+                         "value":"puerta_abierta"
+                        }, 
+                        {
+                         "name":"trueGid",
+                         "type":"int",
+                         "value":1108
+                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":48,
                  "x":78.3333,
-                 "y":105.999666666667
+                 "y":106
+                }, 
+                {
+                 "gid":1108,
+                 "height":48,
+                 "id":17,
+                 "name":"",
+                 "opacity":1,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":48,
+                 "x":32.6666666666667,
+                 "y":104.666666666667
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -312,7 +346,7 @@
          "y":0
         }],
  "nextlayerid":9,
- "nextobjectid":16,
+ "nextobjectid":18,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.12.2",

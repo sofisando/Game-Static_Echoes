@@ -209,9 +209,7 @@ export function canInteract(requirements?: RequisitosInteraccion): boolean {
   return true;
 }
 
-export function applyInteractionEffects(
-  interaction: ObjetoInteractivo,
-): void {
+export function applyInteractionEffects(interaction: ObjetoInteractivo): void {
   const datos = interaction.interactivo;
 
   if (!datos.effects) {
@@ -229,7 +227,11 @@ export function applyInteractionEffects(
   });
 
   flags?.forEach((flag) => {
+    console.log("AGREGANDO FLAG:", flag);
+
     addFlag(flag);
+
+    console.log("FLAG EXISTE:", hasFlag(flag));
   });
 
   addInteraction(datos.interactionId);

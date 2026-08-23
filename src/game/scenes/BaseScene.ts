@@ -40,6 +40,9 @@ import {
 } from "../systems/interaction";
 import { DialogueManager, createDialogueManager } from "../systems/dialogue";
 
+import { updateDynamicObjects } from "../systems/dynamicObjects";
+import { ObjetoDinamico } from "../types/dynamicObject";
+
 export abstract class BaseScene extends Scene {
   protected jugador!: Phaser.Physics.Arcade.Sprite;
   protected cursores!: Phaser.Types.Input.Keyboard.CursorKeys;
@@ -57,6 +60,8 @@ export abstract class BaseScene extends Scene {
 
   protected interactivos!: Phaser.Physics.Arcade.StaticGroup;
   protected interactivoActual: ObjetoInteractivo | null = null;
+
+  protected objetosDinamicos: ObjetoDinamico[] = [];
 
   protected teclaE!: Phaser.Input.Keyboard.Key;
   protected textoE!: Phaser.GameObjects.Text;
@@ -86,8 +91,11 @@ export abstract class BaseScene extends Scene {
     createLayers(map, tilesets, this.mapConfig);
 
     const objetosMapa = createMapObjects(this, map, this.mapConfig, "Muebles");
+    this.objetosDinamicos = objetosMapa.dinamicos;
+    console.log("DINÁMICOS AL CREAR ESCENA:", this.objetosDinamicos);
+    console.log("OBJETOS DE MUEBLES:", objetosMapa.sprites);
+    console.log("OBJETOS DINÁMICOS:", this.objetosDinamicos);
 
-    console.log("OBJETOS DE MUEBLES:", objetosMapa);
     // =========================
     // COLISIONES
     // =========================
@@ -163,6 +171,8 @@ export abstract class BaseScene extends Scene {
 
     this.dialogue = createDialogueManager(this.dialogo, (interactivo) => {
       applyInteractionEffects(interactivo);
+
+      updateDynamicObjects(this, map, this.mapConfig, this.objetosDinamicos);
     });
 
     this.teclaE.on("down", () => {

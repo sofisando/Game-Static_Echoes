@@ -1,5 +1,7 @@
 import { Scene } from "phaser";
 import { MapConfig } from "../types/map";
+import { hasFlag } from "../data/bucleState";
+import { ObjetoDinamico } from "../types/dynamicObject";
 
 export function preloadMap(scene: Phaser.Scene, config: MapConfig) {
   scene.load.tilemapTiledJSON(config.key, config.json);
@@ -48,6 +50,15 @@ export function createLayers(
 // OBJETOS GRÁFICOS DE TILED
 // ======================================================
 
+function getObjectProperty(
+  obj: Phaser.Types.Tilemaps.TiledObject,
+  name: string,
+): unknown {
+  return obj.properties?.find(
+    (p: { name: string; value: unknown }) => p.name === name,
+  )?.value;
+}
+
 export function createMapObjects(
   scene: Phaser.Scene,
   map: Phaser.Tilemaps.Tilemap,
@@ -58,20 +69,49 @@ export function createMapObjects(
 
   if (!layer) {
     console.warn(`No existe la capa de objetos: ${objectLayerName}`);
-    return [];
+
+    return {
+      sprites: [],
+      dinamicos: [],
+    };
   }
 
   const sprites: Phaser.GameObjects.Sprite[] = [];
+  const dinamicos: ObjetoDinamico[] = [];
 
   layer.objects.forEach((obj) => {
     if (!obj.gid) {
       return;
     }
 
-    const gid = obj.gid;
+    // ==================================================
+    // PROPIEDADES DINÁMICAS
+    // ==================================================
 
-    // Buscar qué tileset contiene este GID
+    const dynamicId = getObjectProperty(obj, "dynamicId");
+    const stateFlag = getObjectProperty(obj, "stateFlag");
+    const falseGid = getObjectProperty(obj, "falseGid");
+    const trueGid = getObjectProperty(obj, "trueGid");
+
+    let gid = obj.gid;
+
+    const esDinamico =
+      typeof dynamicId === "string" &&
+      typeof stateFlag === "string" &&
+      typeof falseGid === "number" &&
+      typeof trueGid === "number";
+
+    if (esDinamico) {
+      console.log("ESTADO AL CREAR:", stateFlag, hasFlag(stateFlag));
+      gid = hasFlag(stateFlag) ? trueGid : falseGid;
+    }
+
+    // ==================================================
+    // BUSCAR TILESET
+    // ==================================================
+
     let tilesetEncontrado: Phaser.Tilemaps.Tileset | undefined;
+
     let tilesetConfig:
       | {
           tiledName: string;
@@ -96,12 +136,14 @@ export function createMapObjects(
       console.warn(
         `No se encontró tileset para GID ${gid} en objeto "${obj.name}"`,
       );
+
       return;
     }
 
     const tileId = gid - tilesetEncontrado.firstgid;
 
     const tileWidth = tilesetEncontrado.tileWidth;
+
     const tileHeight = tilesetEncontrado.tileHeight;
 
     const columns = tilesetEncontrado.columns;
@@ -110,13 +152,16 @@ export function createMapObjects(
       console.warn(
         `El tileset "${tilesetEncontrado.name}" no tiene información suficiente.`,
       );
+
       return;
     }
 
     const column = tileId % columns;
+
     const row = Math.floor(tileId / columns);
 
     const margin = tilesetEncontrado.tileMargin;
+
     const spacing = tilesetEncontrado.tileSpacing;
 
     const x = margin + column * (tileWidth + spacing);
@@ -131,15 +176,23 @@ export function createMapObjects(
       console.warn(
         `No se encontró la textura "${textureKey}" para "${obj.name}"`,
       );
+
       return;
     }
 
-    // Crear un frame temporal con el recorte del tile
-    const frameName = `obj-${objectLayerName}-${obj.id}`;
+    // ==================================================
+    // FRAME
+    // ==================================================
+
+    const frameName = `obj-${objectLayerName}-${obj.id}-${gid}`;
 
     if (!texture.has(frameName)) {
       texture.add(frameName, 0, x, y, tileWidth, tileHeight);
     }
+
+    // ==================================================
+    // SPRITE
+    // ==================================================
 
     const sprite = scene.add.sprite(
       obj.x! + tileWidth / 2,
@@ -150,7 +203,6 @@ export function createMapObjects(
 
     sprite.setName(obj.name || "");
 
-    // Y-sort
     sprite.setDepth(obj.y!);
 
     if (obj.rotation) {
@@ -158,9 +210,26 @@ export function createMapObjects(
     }
 
     sprites.push(sprite);
+
+    // ==================================================
+    // REGISTRAR DINÁMICO
+    // ==================================================
+
+    if (esDinamico) {
+      dinamicos.push({
+        sprite,
+        dynamicId,
+        stateFlag,
+        falseGid,
+        trueGid,
+      });
+    }
   });
 
-  return sprites;
+  return {
+    sprites,
+    dinamicos,
+  };
 }
 
 //-----------------------------------------------
