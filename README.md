@@ -4,6 +4,9 @@ This is a Phaser project template that uses Vite for bundling. It supports hot-r
 
 **[This Template is also available as a JavaScript version.](https://github.com/phaserjs/template-vite)**
 
+### Resources
+Bitglow resources have been used.
+
 ### Versions
 
 This template has been updated for:

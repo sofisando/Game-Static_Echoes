@@ -5,6 +5,7 @@ import { MainMenu } from "./scenes/MainMenu";
 import { AUTO, Game } from "phaser";
 import { Preloader } from "./scenes/Preloader";
 import { Pasillo } from "./scenes/Pasillo";
+import { Baño } from "./scenes/Baño";
 
 //  Find out more information about the Game Config at:
 //  https://docs.phaser.io/api-documentation/typedef/types-core#gameconfig
@@ -21,7 +22,7 @@ const config: Phaser.Types.Core.GameConfig = {
   },
   parent: "game-container",
   backgroundColor: "#474747ff",
-  scene: [Boot, Preloader, MainMenu, Oficina, GameOver, Pasillo],
+  scene: [Boot, Preloader, MainMenu, Oficina, GameOver, Pasillo, Baño],
 };
 
 const StartGame = (parent: string) => {

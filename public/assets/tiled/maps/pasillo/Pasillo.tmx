@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="16" height="6" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="18">
+<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="16" height="6" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="22">
  <editorsettings>
   <export target="Pasillo.json" format="json"/>
  </editorsettings>
@@ -67,6 +67,17 @@
   </object>
   <object id="17" gid="1108" x="32.6667" y="104.667" width="48" height="48"/>
  </objectgroup>
+ <objectgroup id="9" name="Interactivos">
+  <object id="18" x="41" y="61" width="12.3333" height="4">
+   <properties>
+    <property name="dialogo" value="con esto cambiamos el color de la mesita | pummmbaaa"/>
+    <property name="effects_flags" value="puerta_abierta"/>
+    <property name="interactionId" value="MesitaCopada"/>
+    <property name="pormpt" value="agarrar flag"/>
+    <property name="tipo" value="recoger"/>
+   </properties>
+  </object>
+ </objectgroup>
  <objectgroup id="5" name="Colisiones">
   <object id="1" x="0.333333" y="0.333333" width="256" height="50"/>
   <object id="2" x="193.333" y="52.6667" width="14.3333" height="10"/>
@@ -84,7 +95,8 @@
   <object id="6" name="PuertaAlBaño" x="146" y="5.66667" width="27.6667" height="48">
    <properties>
     <property name="goTo" value="Baño"/>
-    <property name="spawn" value="PuertaAlBaño"/>
+    <property name="prompt" value="[ F ] ENTRAR AL BAÑO"/>
+    <property name="spawn" value="desdePasillo"/>
    </properties>
   </object>
   <object id="7" name="PuertaAOficina" x="49" y="6.33333" width="28.6667" height="46.6667">
@@ -97,7 +109,8 @@
   <object id="8" name="Escalera" x="208.333" y="55.3333" width="48.3333" height="28.3333">
    <properties>
     <property name="goTo" value="Living"/>
-    <property name="spawn" value="EscaleraAlLiving"/>
+    <property name="prompt" value="[ F ] BAJAR AL LIVING"/>
+    <property name="spawn" value="desdePasillo"/>
    </properties>
   </object>
  </objectgroup>

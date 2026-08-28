@@ -121,8 +121,57 @@
                  "type":"",
                  "visible":true,
                  "width":48,
-                 "x":32.6666666666667,
-                 "y":104.666666666667
+                 "x":32.6667,
+                 "y":104.667
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":9,
+         "name":"Interactivos",
+         "objects":[
+                {
+                 "height":4,
+                 "id":18,
+                 "name":"",
+                 "opacity":1,
+                 "properties":[
+                        {
+                         "name":"dialogo",
+                         "type":"string",
+                         "value":"con esto cambiamos el color de la mesita | pummmbaaa"
+                        }, 
+                        {
+                         "name":"effects_flags",
+                         "type":"string",
+                         "value":"puerta_abierta"
+                        }, 
+                        {
+                         "name":"interactionId",
+                         "type":"string",
+                         "value":"MesitaCopada"
+                        }, 
+                        {
+                         "name":"pormpt",
+                         "type":"string",
+                         "value":"agarrar flag"
+                        }, 
+                        {
+                         "name":"tipo",
+                         "type":"string",
+                         "value":"recoger"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":12.3333,
+                 "x":41,
+                 "y":61
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -277,9 +326,14 @@
                          "value":"Ba\u00f1o"
                         }, 
                         {
+                         "name":"prompt",
+                         "type":"string",
+                         "value":"[ F ] ENTRAR AL BA\u00d1O"
+                        }, 
+                        {
                          "name":"spawn",
                          "type":"string",
-                         "value":"PuertaAlBa\u00f1o"
+                         "value":"desdePasillo"
                         }],
                  "rotation":0,
                  "type":"",
@@ -328,9 +382,14 @@
                          "value":"Living"
                         }, 
                         {
+                         "name":"prompt",
+                         "type":"string",
+                         "value":"[ F ] BAJAR AL LIVING"
+                        }, 
+                        {
                          "name":"spawn",
                          "type":"string",
-                         "value":"EscaleraAlLiving"
+                         "value":"desdePasillo"
                         }],
                  "rotation":0,
                  "type":"",
@@ -345,8 +404,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":9,
- "nextobjectid":18,
+ "nextlayerid":10,
+ "nextobjectid":22,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.12.2",
