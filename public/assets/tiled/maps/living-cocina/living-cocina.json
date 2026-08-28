@@ -15,7 +15,7 @@
             100, 101, 102, 101, 102, 101, 102, 101, 102, 101, 102, 101, 102, 101, 102, 101, 102, 101, 103, 206, 207, 208, 207, 208, 207, 208, 207, 208, 207, 207, 208, 207, 208, 207, 209],
          "height":10,
          "id":1,
-         "name":"Pisos",
+         "name":"Piso",
          "opacity":1,
          "type":"tilelayer",
          "visible":true,
@@ -58,8 +58,8 @@
          "height":10,
          "id":6,
          "name":"Muebles2",
-         "offsetx":2.66666666666669,
-         "offsety":-0.333333333333314,
+         "offsetx":2.66667,
+         "offsety":-0.333333,
          "opacity":1,
          "type":"tilelayer",
          "visible":true,
@@ -112,16 +112,68 @@
         {
          "draworder":"topdown",
          "id":2,
-         "name":"Capa de Objetos 1",
-         "objects":[],
+         "name":"Spawn",
+         "objects":[
+                {
+                 "height":0,
+                 "id":1,
+                 "name":"desdePasillo",
+                 "opacity":1,
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":70,
+                 "y":135.5
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":7,
+         "name":"Transiciones",
+         "objects":[
+                {
+                 "height":19,
+                 "id":2,
+                 "name":"EscaleraAlPasillo",
+                 "opacity":1,
+                 "properties":[
+                        {
+                         "name":"goTo",
+                         "type":"string",
+                         "value":"Pasillo"
+                        }, 
+                        {
+                         "name":"prompt",
+                         "type":"string",
+                         "value":"[ F ] SUBIR AL PASILLO"
+                        }, 
+                        {
+                         "name":"spawn",
+                         "type":"string",
+                         "value":"desdeLiving"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":56,
+                 "x":0,
+                 "y":139
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
          "x":0,
          "y":0
         }],
- "nextlayerid":7,
- "nextobjectid":1,
+ "nextlayerid":8,
+ "nextobjectid":3,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.12.2",

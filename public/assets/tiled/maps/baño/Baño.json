@@ -56,12 +56,12 @@
          "y":0
         }, 
         {
-         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 646, 647, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 656, 657, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         "data":[478, 478, 478, 478, 478, 478, 478, 478, 478, 478, 478, 478,
+            478, 478, 478, 478, 478, 478, 478, 478, 478, 478, 478, 478,
+            478, 478, 646, 647, 478, 478, 478, 478, 478, 478, 478, 478,
+            478, 478, 656, 657, 478, 478, 478, 478, 478, 478, 478, 478,
+            478, 478, 478, 478, 478, 478, 478, 478, 478, 478, 478, 478,
+            478, 478, 478, 478, 478, 478, 478, 478, 478, 478, 478, 478],
          "height":6,
          "id":8,
          "name":"Mueble",
@@ -152,9 +152,48 @@
          "visible":true,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":9,
+         "name":"Transiciones",
+         "objects":[
+                {
+                 "height":42.25,
+                 "id":2,
+                 "name":"PuertaAlPasillo",
+                 "opacity":1,
+                 "properties":[
+                        {
+                         "name":"goTo",
+                         "type":"string",
+                         "value":"Pasillo"
+                        }, 
+                        {
+                         "name":"prompt",
+                         "type":"string",
+                         "value":"[ F ] SALIR Al PASILLO"
+                        }, 
+                        {
+                         "name":"spawn",
+                         "type":"string",
+                         "value":"desdeBano"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":1.25,
+                 "x":0.5,
+                 "y":53
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":9,
- "nextobjectid":2,
+ "nextlayerid":10,
+ "nextobjectid":3,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.12.2",

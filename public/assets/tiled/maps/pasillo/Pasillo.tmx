@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="16" height="6" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="22">
+<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="16" height="6" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="26">
  <editorsettings>
   <export target="Pasillo.json" format="json"/>
  </editorsettings>
@@ -86,11 +86,6 @@
   <object id="11" x="209" y="56" width="47.75" height="27.25"/>
   <object id="13" x="102.667" y="82.6667" width="15.6667" height="7.66667"/>
  </objectgroup>
- <objectgroup id="6" name="Spawn">
-  <object id="5" name="desdeLiving" x="198.333" y="74" width="2" height="2.33333"/>
-  <object id="9" name="desdeOficina" x="72" y="61" width="2.5" height="2"/>
-  <object id="10" name="desdeBaño" x="169" y="64.75" width="2.25" height="2"/>
- </objectgroup>
  <objectgroup id="7" name="Transiciones">
   <object id="6" name="PuertaAlBaño" x="146" y="5.66667" width="27.6667" height="48">
    <properties>
@@ -108,10 +103,21 @@
   </object>
   <object id="8" name="Escalera" x="208.333" y="55.3333" width="48.3333" height="28.3333">
    <properties>
-    <property name="goTo" value="Living"/>
+    <property name="goTo" value="Living-Cocina"/>
     <property name="prompt" value="[ F ] BAJAR AL LIVING"/>
     <property name="spawn" value="desdePasillo"/>
    </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="6" name="Spawn">
+  <object id="22" name="desdeBaño" x="175" y="37.6667">
+   <point/>
+  </object>
+  <object id="23" name="desdeOficina" x="78.6667" y="38">
+   <point/>
+  </object>
+  <object id="25" name="desdeLiving" x="201.667" y="54.6667">
+   <point/>
   </object>
  </objectgroup>
 </map>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="16" height="10" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="48">
+<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="16" height="10" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="49">
  <editorsettings>
   <export target="Oficina.json" format="json"/>
  </editorsettings>
@@ -100,9 +100,6 @@
   <object id="32" x="201.027" y="89.4653" width="14.5516" height="14.8211"/>
   <object id="34" x="224.472" y="80.5726" width="30.1811" height="32.3368"/>
  </objectgroup>
- <objectgroup id="7" name="Spawn">
-  <object id="38" name="desdePasillo" x="230.131" y="55.5116" width="1.07789" height="1.07789"/>
- </objectgroup>
  <objectgroup id="8" name="Transiciones">
   <object id="39" name="PuertaAlPasillo" x="192.404" y="5.92842" width="30.9895" height="50.3916">
    <properties>
@@ -140,6 +137,11 @@
     <property name="requirements_clues" value="libro_oficina"/>
     <property name="tipo" value="usar"/>
    </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="7" name="Spawn">
+  <object id="48" name="desdePasillo" x="227.667" y="45">
+   <point/>
   </object>
  </objectgroup>
 </map>

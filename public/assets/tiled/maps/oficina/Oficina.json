@@ -242,29 +242,6 @@
         }, 
         {
          "draworder":"topdown",
-         "id":7,
-         "name":"Spawn",
-         "objects":[
-                {
-                 "height":1.07789,
-                 "id":38,
-                 "name":"desdePasillo",
-                 "opacity":1,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":1.07789,
-                 "x":230.131,
-                 "y":55.5116
-                }],
-         "opacity":1,
-         "type":"objectgroup",
-         "visible":true,
-         "x":0,
-         "y":0
-        }, 
-        {
-         "draworder":"topdown",
          "id":8,
          "name":"Transiciones",
          "objects":[
@@ -431,9 +408,33 @@
          "visible":true,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":7,
+         "name":"Spawn",
+         "objects":[
+                {
+                 "height":0,
+                 "id":48,
+                 "name":"desdePasillo",
+                 "opacity":1,
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":227.666666666667,
+                 "y":45
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
  "nextlayerid":12,
- "nextobjectid":48,
+ "nextobjectid":49,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.12.2",

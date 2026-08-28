@@ -264,53 +264,6 @@
         }, 
         {
          "draworder":"topdown",
-         "id":6,
-         "name":"Spawn",
-         "objects":[
-                {
-                 "height":2.33333,
-                 "id":5,
-                 "name":"desdeLiving",
-                 "opacity":1,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":2,
-                 "x":198.333,
-                 "y":74
-                }, 
-                {
-                 "height":2,
-                 "id":9,
-                 "name":"desdeOficina",
-                 "opacity":1,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":2.5,
-                 "x":72,
-                 "y":61
-                }, 
-                {
-                 "height":2,
-                 "id":10,
-                 "name":"desdeBa\u00f1o",
-                 "opacity":1,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":2.25,
-                 "x":169,
-                 "y":64.75
-                }],
-         "opacity":1,
-         "type":"objectgroup",
-         "visible":true,
-         "x":0,
-         "y":0
-        }, 
-        {
-         "draworder":"topdown",
          "id":7,
          "name":"Transiciones",
          "objects":[
@@ -379,7 +332,7 @@
                         {
                          "name":"goTo",
                          "type":"string",
-                         "value":"Living"
+                         "value":"Living-Cocina"
                         }, 
                         {
                          "name":"prompt",
@@ -403,9 +356,59 @@
          "visible":true,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":6,
+         "name":"Spawn",
+         "objects":[
+                {
+                 "height":0,
+                 "id":22,
+                 "name":"desdeBa\u00f1o",
+                 "opacity":1,
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":175,
+                 "y":37.6667
+                }, 
+                {
+                 "height":0,
+                 "id":23,
+                 "name":"desdeOficina",
+                 "opacity":1,
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":78.6667,
+                 "y":38
+                }, 
+                {
+                 "height":0,
+                 "id":25,
+                 "name":"desdeLiving",
+                 "opacity":1,
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":201.667,
+                 "y":54.6667
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
  "nextlayerid":10,
- "nextobjectid":22,
+ "nextobjectid":26,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.12.2",

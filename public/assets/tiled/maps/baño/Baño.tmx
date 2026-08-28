@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="12" height="6" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="2">
+<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="12" height="6" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="3">
  <editorsettings>
   <export target="Baño.json" format="json"/>
  </editorsettings>
@@ -50,12 +50,12 @@
  </layer>
  <layer id="8" name="Mueble" width="12" height="6" offsetx="-6.5" offsety="-4">
   <data encoding="csv">
-0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,646,647,0,0,0,0,0,0,0,0,
-0,0,656,657,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0
+478,478,478,478,478,478,478,478,478,478,478,478,
+478,478,478,478,478,478,478,478,478,478,478,478,
+478,478,646,647,478,478,478,478,478,478,478,478,
+478,478,656,657,478,478,478,478,478,478,478,478,
+478,478,478,478,478,478,478,478,478,478,478,478,
+478,478,478,478,478,478,478,478,478,478,478,478
 </data>
  </layer>
  <layer id="3" name="Porcelana" width="12" height="6" offsetx="1" offsety="-4.25">
@@ -91,6 +91,15 @@
  <objectgroup id="7" name="Spawn">
   <object id="1" name="desdePasillo" x="9.75" y="74.75">
    <point/>
+  </object>
+ </objectgroup>
+ <objectgroup id="9" name="Transiciones">
+  <object id="2" name="PuertaAlPasillo" x="0.5" y="53" width="1.25" height="42.25">
+   <properties>
+    <property name="goTo" value="Pasillo"/>
+    <property name="prompt" value="[ F ] SALIR Al PASILLO"/>
+    <property name="spawn" value="desdeBano"/>
+   </properties>
   </object>
  </objectgroup>
 </map>
