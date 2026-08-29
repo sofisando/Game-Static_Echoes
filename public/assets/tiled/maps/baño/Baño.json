@@ -39,8 +39,8 @@
         {
          "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 2684355167, 2684355155, 2684355143, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 370, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 389, 0, 0, 0, 0, 0, 0, 0,
             0, 291, 292, 293, 0, 0, 0, 308, 309, 310, 311, 0,
             0, 0, 0, 0, 0, 0, 0, 327, 328, 329, 330, 0],
          "height":6,
@@ -94,21 +94,96 @@
          "y":0
         }, 
         {
-         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 370, 0, 0, 448, 449, 450, 451, 0,
-            0, 0, 0, 0, 389, 0, 0, 461, 462, 463, 464, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-         "height":6,
-         "id":4,
-         "name":"PorcelanaMove",
-         "offsetx":2.25,
-         "offsety":2.5,
+         "draworder":"topdown",
+         "id":11,
+         "name":"Muebles",
+         "objects":[
+                {
+                 "gid":715,
+                 "height":32,
+                 "id":8,
+                 "name":"Ba\u00f1era",
+                 "opacity":1,
+                 "properties":[
+                        {
+                         "name":"dynamicId",
+                         "type":"string",
+                         "value":"ba\u00f1era"
+                        }, 
+                        {
+                         "name":"falseGid",
+                         "type":"int",
+                         "value":715
+                        }, 
+                        {
+                         "name":"stateFlag",
+                         "type":"string",
+                         "value":"banera_abierta"
+                        }, 
+                        {
+                         "name":"trueGid",
+                         "type":"int",
+                         "value":717
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":64,
+                 "x":113.25,
+                 "y":69
+                }],
          "opacity":1,
-         "type":"tilelayer",
+         "type":"objectgroup",
          "visible":true,
-         "width":12,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":12,
+         "name":"Interactivos",
+         "objects":[
+                {
+                 "height":12.25,
+                 "id":10,
+                 "name":"",
+                 "opacity":1,
+                 "properties":[
+                        {
+                         "name":"dialogo",
+                         "type":"string",
+                         "value":"Veremos si eso del ba\u00f1o caliente ayuda"
+                        }, 
+                        {
+                         "name":"effects_flags",
+                         "type":"string",
+                         "value":"banera_abierta"
+                        }, 
+                        {
+                         "name":"interactionId",
+                         "type":"string",
+                         "value":"Ba\u00f1era"
+                        }, 
+                        {
+                         "name":"prompt",
+                         "type":"string",
+                         "value":"Abrir canilla"
+                        }, 
+                        {
+                         "name":"tipo",
+                         "type":"string",
+                         "value":"activar"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":7.25,
+                 "x":115.25,
+                 "y":38.75
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -191,9 +266,68 @@
          "visible":true,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":10,
+         "name":"Colisiones",
+         "objects":[
+                {
+                 "height":51.5,
+                 "id":3,
+                 "name":"",
+                 "opacity":1,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":191.25,
+                 "x":0.5,
+                 "y":0.75
+                }, 
+                {
+                 "height":7.25,
+                 "id":5,
+                 "name":"",
+                 "opacity":1,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":30,
+                 "x":26.25,
+                 "y":52.5
+                }, 
+                {
+                 "height":19,
+                 "id":6,
+                 "name":"",
+                 "opacity":1,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":19.5,
+                 "x":87.25,
+                 "y":52
+                }, 
+                {
+                 "height":14.75,
+                 "id":7,
+                 "name":"",
+                 "opacity":1,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":60.5,
+                 "x":114.5,
+                 "y":53.5
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":10,
- "nextobjectid":3,
+ "nextlayerid":13,
+ "nextobjectid":11,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.12.2",
@@ -263,6 +397,25 @@
          "tilecount":70,
          "tileheight":16,
          "tilewidth":16
+        }, 
+        {
+         "columns":2,
+         "firstgid":715,
+         "grid":
+            {
+             "height":16,
+             "orientation":"orthogonal",
+             "width":48
+            },
+         "image":"..\/..\/tiles\/interior\/fixtures_BA.png",
+         "imageheight":112,
+         "imagewidth":208,
+         "margin":16,
+         "name":"PorcelanaObject",
+         "spacing":16,
+         "tilecount":4,
+         "tileheight":32,
+         "tilewidth":64
         }],
  "tilewidth":16,
  "type":"map",

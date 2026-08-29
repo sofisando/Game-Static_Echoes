@@ -35,6 +35,11 @@ export const bañoConfig: MapConfig = {
       key: "Muebles",
       image: "assets/tiled/tiles/interior/cabinets_BA.png",
     },
+    {
+      tiledName: "PorcelanaObject",
+      key: "PorcelanaObject",
+      image: "assets/tiled/tiles/interior/fixtures_BA.png",
+    },
   ],
 
   layers: [
@@ -62,12 +67,6 @@ export const bañoConfig: MapConfig = {
       name: "Porcelana",
       tilesets: ["BañoPorcelana"],
     },
-
-    {
-      name: "PorcelanaMove",
-      tilesets: ["BañoPorcelana", "BañoTextiles"],
-    },
-
     {
       name: "Decoracion2",
       tilesets: ["BañoTextiles"],

@@ -90,8 +90,14 @@ export function createMapObjects(
 
     const dynamicId = getObjectProperty(obj, "dynamicId");
     const stateFlag = getObjectProperty(obj, "stateFlag");
-    const falseGid = getObjectProperty(obj, "falseGid");
-    const trueGid = getObjectProperty(obj, "trueGid");
+    const falseGidRaw = getObjectProperty(obj, "falseGid");
+    const trueGidRaw = getObjectProperty(obj, "trueGid");
+
+    const falseGid =
+      typeof falseGidRaw === "string" ? Number(falseGidRaw) : falseGidRaw;
+
+    const trueGid =
+      typeof trueGidRaw === "string" ? Number(trueGidRaw) : trueGidRaw;
 
     let gid = obj.gid;
 

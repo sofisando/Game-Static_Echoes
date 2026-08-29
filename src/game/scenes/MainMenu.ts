@@ -25,7 +25,7 @@ export class MainMenu extends Scene
 
         this.input.once('pointerdown', () => {
 
-            this.scene.start('Oficina'); //inicio del juego
+            this.scene.start('Living-Cocina'); //inicio del juego
 
         });
     }

@@ -32,7 +32,7 @@ export function createPlayer(
   jugador.body!.setSize(26, 11);
   jugador.body!.setOffset(48, 120);
 
-  jugador.setScale(0.6);
+  jugador.setScale(0.7);
   jugador.setOrigin(0.5, 0.82);
 
   jugador.setCollideWorldBounds(true);
