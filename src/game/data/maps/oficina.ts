@@ -30,6 +30,11 @@ export const oficinaConfig: MapConfig = {
       key: "Librerias",
       image: "assets/tiled/tiles/interior/librerias.png",
     },
+    {
+      tiledName: "LibreriasObj",
+      key: "LibreriasObj",
+      image: "assets/tiled/tiles/interior/libreriasObj.png",
+    },
   ],
 
   layers: [

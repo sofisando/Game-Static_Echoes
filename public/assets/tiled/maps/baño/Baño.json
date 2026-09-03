@@ -131,6 +131,40 @@
                  "width":64,
                  "x":113.25,
                  "y":69
+                }, 
+                {
+                 "gid":716,
+                 "height":32,
+                 "id":13,
+                 "name":"Lavatorio",
+                 "opacity":1,
+                 "properties":[
+                        {
+                         "name":"dynamicId",
+                         "type":"string",
+                         "value":"lavatorio"
+                        }, 
+                        {
+                         "name":"falseGid",
+                         "type":"int",
+                         "value":716
+                        }, 
+                        {
+                         "name":"stateFlag",
+                         "type":"string",
+                         "value":"lavatorio_abierto"
+                        }, 
+                        {
+                         "name":"trueGid",
+                         "type":"int",
+                         "value":718
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":64,
+                 "x":17,
+                 "y":59.75
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -180,6 +214,49 @@
                  "width":7.25,
                  "x":115.25,
                  "y":38.75
+                }, 
+                {
+                 "height":3.63636363636364,
+                 "id":16,
+                 "name":"",
+                 "opacity":1,
+                 "properties":[
+                        {
+                         "name":"dialogo",
+                         "type":"string",
+                         "value":"Agua caliente"
+                        }, 
+                        {
+                         "name":"dialogoLocked",
+                         "type":"string",
+                         "value":"Solo sale agua fr\u00eda"
+                        }, 
+                        {
+                         "name":"effects_flags",
+                         "type":"string",
+                         "value":"lavatorio_abierto"
+                        }, 
+                        {
+                         "name":"interactionId",
+                         "type":"string",
+                         "value":"Lavatorio"
+                        }, 
+                        {
+                         "name":"prompt",
+                         "type":"string",
+                         "value":"Abrir canilla"
+                        }, 
+                        {
+                         "name":"tipo",
+                         "type":"string",
+                         "value":"activar"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":12.5454545454545,
+                 "x":35.0909090909091,
+                 "y":28
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -190,8 +267,8 @@
         {
          "data":[0, 0, 0, 0, 0, 0, 0, 0, 365, 366, 367, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 384, 385, 386, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 403, 404, 405, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 403, 404, 405, 586,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 598,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
          "height":6,
@@ -327,7 +404,7 @@
          "y":0
         }],
  "nextlayerid":13,
- "nextobjectid":11,
+ "nextobjectid":17,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.12.2",

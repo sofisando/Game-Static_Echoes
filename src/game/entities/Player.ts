@@ -69,6 +69,4 @@ export function updatePlayer(
   } else {
     jugador.play("detective_idle", true);
   }
-
-  jugador.setDepth(jugador.y);
 }

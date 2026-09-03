@@ -25,9 +25,9 @@ export const pasilloConfig: MapConfig = {
     },
 
     {
-      tiledName: "prueba",
-      key: "prueba",
-      image: "assets/tiled/tiles/interior/livingroom.png",
+      tiledName: "DecoracionesObjetos",
+      key: "DecoracionesObjetos",
+      image: "assets/tiled/tiles/interior/decoracionesPlantas.png",
     },
   ],
 
@@ -44,12 +44,7 @@ export const pasilloConfig: MapConfig = {
 
     {
       name: "Puerta",
-      tilesets: ["Puerta"],
-    },
-
-    {
-      name: "Decoraciones",
-      tilesets: ["Decoraciones"],
+      tilesets: ["Puerta", "Decoraciones"],
     },
   ],
 };

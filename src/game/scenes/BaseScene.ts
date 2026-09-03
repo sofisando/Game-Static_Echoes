@@ -42,6 +42,7 @@ import { DialogueManager, createDialogueManager } from "../systems/dialogue";
 
 import { updateDynamicObjects } from "../systems/dynamicObjects";
 import { ObjetoDinamico } from "../types/dynamicObject";
+import { getSortY } from "../systems/depthSort";
 
 export abstract class BaseScene extends Scene {
   protected jugador!: Phaser.Physics.Arcade.Sprite;
@@ -81,6 +82,7 @@ export abstract class BaseScene extends Scene {
 
   create() {
     // =========================
+    // =========================
     // MAPA
     // =========================
 
@@ -88,12 +90,22 @@ export abstract class BaseScene extends Scene {
 
     const tilesets = addTilesets(map, this.mapConfig);
 
-    createLayers(map, tilesets, this.mapConfig);
+    const tileLayers = createLayers(map, tilesets, this.mapConfig);
 
-    const objetosMapa = createMapObjects(this, map, this.mapConfig, "Muebles");
+    const objetosMapa = createMapObjects(
+      this,
+      map,
+      this.mapConfig,
+      "Muebles",
+      tileLayers,
+    );
+
     this.objetosDinamicos = objetosMapa.dinamicos;
+
     console.log("DINÁMICOS AL CREAR ESCENA:", this.objetosDinamicos);
+
     console.log("OBJETOS DE MUEBLES:", objetosMapa.sprites);
+
     console.log("OBJETOS DINÁMICOS:", this.objetosDinamicos);
 
     // =========================
@@ -134,6 +146,16 @@ export abstract class BaseScene extends Scene {
     const { spawn = "Spawn" } = getSceneData(this);
 
     this.jugador = createPlayer(this, map, this.colisiones, spawn);
+
+    /*
+     * El jugador pasa al mismo Layer que
+     * los objetos de Muebles.
+     * y el depth/Y se resuelve solamente
+     * entre ellos.
+     */
+    if (objetosMapa.displayLayer) {
+      objetosMapa.displayLayer.add(this.jugador);
+    }
 
     // =========================
     // MUNDO
@@ -198,7 +220,7 @@ export abstract class BaseScene extends Scene {
       updatePlayer(this.jugador, this.cursores);
     }
 
-    this.jugador.setDepth(this.jugador.y + this.jugador.displayHeight / 2);
+    this.jugador.setDepth(getSortY(this.jugador));
 
     this.transicionActual = updateTransitions(
       this,

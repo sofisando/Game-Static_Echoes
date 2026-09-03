@@ -101,4 +101,8 @@ function updateDynamicObjectFrame(
   }
 
   objeto.sprite.setTexture(tilesetConfig.key, frameName);
+  objeto.sprite.setDepth(
+  objeto.sprite.y +
+  objeto.sprite.displayHeight * (1 - objeto.sprite.originY)
+);
 }

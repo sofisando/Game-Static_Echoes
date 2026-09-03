@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="16" height="10" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="49">
+<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="16" height="10" tilewidth="16" tileheight="16" infinite="0" nextlayerid="13" nextobjectid="58">
  <editorsettings>
   <export target="Oficina.json" format="json"/>
  </editorsettings>
@@ -17,6 +17,9 @@
  </tileset>
  <tileset firstgid="3150" name="Decoraciones" tilewidth="16" tileheight="16" tilecount="120" columns="12">
   <image source="../../tiles/interior/decorations.png" width="192" height="160"/>
+ </tileset>
+ <tileset firstgid="3270" name="LibreriasObj" tilewidth="48" tileheight="48" spacing="16" tilecount="42" columns="7">
+  <image source="../../tiles/interior/libreriasObj.png" width="434" height="368"/>
  </tileset>
  <layer id="1" name="Piso" width="16" height="10">
   <data encoding="csv">
@@ -63,17 +66,26 @@
  <layer id="4" name="Muebles" width="16" height="10">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,1009,1010,1011,1013,1014,1015,1029,1030,1031,0,0,0,0,0,0,
-0,1056,1057,1058,1060,1061,1062,1076,1077,1078,0,0,0,0,0,0,
-1017,1103,1104,1105,1107,1108,1109,1123,1124,1125,0,0,0,0,0,0,
-1064,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-1111,0,0,2521,2509,2510,0,0,0,0,0,0,2595,2596,0,0,
-1017,0,0,2560,2548,2549,0,0,0,0,0,0,2634,2635,0,0,
-1064,0,0,0,2587,2588,0,0,0,0,1213,1214,1215,1205,1206,1207,
-1111,0,0,0,0,0,0,0,0,0,1260,1261,1262,1252,1253,1254,
-0,0,0,0,0,0,0,0,0,0,1307,1308,1309,1299,1300,1301
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,2521,2509,2510,0,0,0,0,0,0,2595,2596,0,0,
+0,0,0,2560,2548,2549,0,0,0,0,0,0,2634,2635,0,0,
+0,0,0,0,2587,2588,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup id="12" name="Muebles">
+  <object id="49" gid="3270" x="16" y="64" width="48" height="48"/>
+  <object id="50" gid="3271" x="64" y="64" width="48" height="48"/>
+  <object id="51" gid="3275" x="112" y="64" width="48" height="48"/>
+  <object id="53" gid="3279" x="208" y="160" width="48" height="48"/>
+  <object id="54" gid="3281" x="160" y="160" width="48" height="48"/>
+  <object id="55" gid="3272" x="0" y="144" width="48" height="48"/>
+  <object id="56" gid="3272" x="0" y="96" width="48" height="48"/>
+ </objectgroup>
  <layer id="5" name="Decoraciones" width="16" height="10">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -92,13 +104,14 @@
   <object id="1" x="0.808421" y="0.538947" width="256" height="51.4695"/>
   <object id="20" x="240.64" y="52.8168" width="16.1684" height="11.0484"/>
   <object id="21" x="15.0905" y="52.5474" width="160.067" height="10.5095"/>
-  <object id="22" x="0.269474" y="50.6611" width="15.6295" height="109.945"/>
+  <object id="22" x="0.269474" y="125.994" width="15.6295" height="34.6117"/>
   <object id="25" x="48.5053" y="80.8421" width="16.9768" height="32.0674"/>
   <object id="26" x="64.4042" y="80.3032" width="29.6421" height="46.8884"/>
-  <object id="27" x="144.438" y="130.156" width="15.36" height="29.3726"/>
-  <object id="29" x="159.528" y="112.909" width="95.9326" height="47.1579"/>
+  <object id="27" x="144.438" y="145.156" width="15.36" height="14.3726"/>
+  <object id="29" x="159.528" y="144.242" width="95.9326" height="15.8246"/>
   <object id="32" x="201.027" y="89.4653" width="14.5516" height="14.8211"/>
-  <object id="34" x="224.472" y="80.5726" width="30.1811" height="32.3368"/>
+  <object id="34" x="224.472" y="80.5726" width="30.1811" height="45.6701"/>
+  <object id="57" x="0.666667" y="80.3333" width="14" height="16.3333"/>
  </objectgroup>
  <objectgroup id="8" name="Transiciones">
   <object id="39" name="PuertaAlPasillo" x="192.404" y="5.92842" width="30.9895" height="50.3916">
