@@ -40,6 +40,52 @@ export const livingCocinaConfig: MapConfig = {
       key: "Cocina",
       image: "assets/tiled/tiles/interior/kitchen.png",
     },
+    {
+      tiledName: "LibreriasObj",
+      key: "LibreriasObj",
+      image: "assets/tiled/tiles/interior/libreriasObj.png",
+    },
+    {
+      tiledName: "FloresObj",
+      key: "FloresObj",
+      image: "assets/tiled/tiles/interior/floresObj.png",
+    },
+    {
+      tiledName: "Escalera",
+      key: "Escalera",
+      image: "assets/tiled/tiles/interior/escalera.png",
+    },
+    {
+      tiledName: "DecoracionesObjetos",
+      key: "DecoracionesObjetos",
+      image: "assets/tiled/tiles/interior/decoracionesPlantas.png",
+    },
+    {
+      tiledName: "chimenea",
+      key: "chimenea",
+      image: "assets/tiled/tiles/interior/chimenea.png",
+    },
+
+    {
+      tiledName: "sillas",
+      key: "sillas",
+      image: "assets/tiled/tiles/interior/sillas.png",
+    },
+    {
+      tiledName: "sillon",
+      key: "sillon",
+      image: "assets/tiled/tiles/interior/sillon.png",
+    },
+    {
+      tiledName: "mesa",
+      key: "mesa",
+      image: "assets/tiled/tiles/interior/mesa.png",
+    },
+    {
+      tiledName: "alfombra",
+      key: "alfombra",
+      image: "assets/tiled/tiles/interior/alfombra.png",
+    },
   ],
 
   layers: [
@@ -50,10 +96,6 @@ export const livingCocinaConfig: MapConfig = {
     {
       name: "Pared",
       tilesets: ["PisosYParedes", "Living"],
-    },
-    {
-      name: "Muebles2",
-      tilesets: ["Living"],
     },
     {
       name: "MueblesLiving",

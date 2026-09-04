@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="16" height="10" tilewidth="16" tileheight="16" infinite="0" nextlayerid="13" nextobjectid="58">
+<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="16" height="10" tilewidth="16" tileheight="16" infinite="0" nextlayerid="15" nextobjectid="89">
  <editorsettings>
   <export target="Oficina.json" format="json"/>
  </editorsettings>
@@ -20,6 +20,13 @@
  </tileset>
  <tileset firstgid="3270" name="LibreriasObj" tilewidth="48" tileheight="48" spacing="16" tilecount="42" columns="7">
   <image source="../../tiles/interior/libreriasObj.png" width="434" height="368"/>
+ </tileset>
+ <tileset firstgid="3312" name="DecoracionesObjetos" tilewidth="16" tileheight="48" tilecount="10" columns="5">
+  <image source="../../tiles/interior/decoracionesPlantas.png" width="80" height="96"/>
+ </tileset>
+ <tileset firstgid="3322" name="sillaVieja" tilewidth="20" tileheight="34" tilecount="1" columns="1">
+  <grid orientation="orthogonal" width="16" height="32"/>
+  <image source="../../tiles/interior/sillaVieja.png" width="20" height="34"/>
  </tileset>
  <layer id="1" name="Piso" width="16" height="10">
   <data encoding="csv">
@@ -70,8 +77,8 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,2521,2509,2510,0,0,0,0,0,0,2595,2596,0,0,
-0,0,0,2560,2548,2549,0,0,0,0,0,0,2634,2635,0,0,
+0,0,0,0,2509,2510,0,0,0,0,0,0,2595,2596,0,0,
+0,0,0,0,2548,2549,0,0,0,0,0,0,2634,2635,0,0,
 0,0,0,0,2587,2588,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
@@ -85,31 +92,21 @@
   <object id="54" gid="3281" x="160" y="160" width="48" height="48"/>
   <object id="55" gid="3272" x="0" y="144" width="48" height="48"/>
   <object id="56" gid="3272" x="0" y="96" width="48" height="48"/>
+  <object id="58" gid="3312" x="240" y="64" width="16" height="48"/>
+  <object id="59" gid="3312" x="0" y="160" width="16" height="48"/>
+  <object id="60" gid="3317" x="144" y="160" width="16" height="48"/>
+  <object id="61" gid="3321" x="160" y="64" width="16" height="48"/>
+  <object id="81" gid="3322" x="47.3333" y="113.667" width="20" height="34"/>
  </objectgroup>
- <layer id="5" name="Decoraciones" width="16" height="10">
-  <data encoding="csv">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,3247,0,0,0,0,0,0,0,3163,
-3239,0,0,0,0,0,0,0,0,0,3215,0,0,0,0,3175,
-3251,0,0,0,0,0,0,0,0,0,3227,0,0,0,0,3187,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-3239,0,0,0,3171,3172,0,0,0,0,0,0,0,0,0,0,
-3251,0,0,0,3183,3184,0,0,0,0,0,0,0,0,0,0,
-3163,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-3175,0,0,0,0,0,0,0,0,3211,0,0,0,0,0,0,
-3187,0,0,0,0,0,0,0,0,3223,0,0,0,0,0,0
-</data>
- </layer>
  <objectgroup id="6" name="Colisiones">
   <object id="1" x="0.808421" y="0.538947" width="256" height="51.4695"/>
-  <object id="20" x="240.64" y="52.8168" width="16.1684" height="11.0484"/>
-  <object id="21" x="15.0905" y="52.5474" width="160.067" height="10.5095"/>
-  <object id="22" x="0.269474" y="125.994" width="15.6295" height="34.6117"/>
-  <object id="25" x="48.5053" y="80.8421" width="16.9768" height="32.0674"/>
-  <object id="26" x="64.4042" y="80.3032" width="29.6421" height="46.8884"/>
-  <object id="27" x="144.438" y="145.156" width="15.36" height="14.3726"/>
-  <object id="29" x="159.528" y="144.242" width="95.9326" height="15.8246"/>
-  <object id="32" x="201.027" y="89.4653" width="14.5516" height="14.8211"/>
+  <object id="20" x="241.973" y="56.8168" width="12.8351" height="3.38173"/>
+  <object id="21" x="15.0905" y="52.5474" width="157.4" height="10.1762"/>
+  <object id="22" x="0.269474" y="125.994" width="13.6295" height="27.945"/>
+  <object id="26" x="66.7375" y="81.9699" width="26.3088" height="44.8884"/>
+  <object id="27" x="147.105" y="154.065" width="10.6933" height="5.46351"/>
+  <object id="29" x="159.528" y="147.909" width="95.9326" height="12.1579"/>
+  <object id="32" x="201.027" y="90.132" width="14.5516" height="14.1544"/>
   <object id="34" x="224.472" y="80.5726" width="30.1811" height="45.6701"/>
   <object id="57" x="0.666667" y="80.3333" width="14" height="16.3333"/>
  </objectgroup>
@@ -157,4 +154,18 @@
    <point/>
   </object>
  </objectgroup>
+ <layer id="14" name="Decoraciones" width="16" height="10">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,3171,3172,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,3183,3184,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
 </map>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="35" height="10" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="30">
+<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="35" height="10" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="142">
  <editorsettings>
   <export target="living-cocina.json" format="json"/>
  </editorsettings>
@@ -20,6 +20,37 @@
  </tileset>
  <tileset firstgid="3270" name="Cocina" tilewidth="16" tileheight="16" tilecount="650" columns="26">
   <image source="../../tiles/interior/kitchen.png" width="416" height="400"/>
+ </tileset>
+ <tileset firstgid="3920" name="FloresObj" tilewidth="18" tileheight="20" tilecount="3" columns="3">
+  <image source="../../tiles/interior/floresObj.png" width="54" height="20"/>
+ </tileset>
+ <tileset firstgid="3923" name="LibreriasObj" tilewidth="48" tileheight="48" spacing="16" tilecount="63" columns="7">
+  <image source="../../tiles/interior/libreriasObj.png" width="434" height="368"/>
+ </tileset>
+ <tileset firstgid="3986" name="Escalera" tilewidth="60" tileheight="74" tilecount="1" columns="1">
+  <image source="../../tiles/interior/escalera.png" width="60" height="74"/>
+ </tileset>
+ <tileset firstgid="3987" name="chimenea" tilewidth="32" tileheight="40" spacing="16" tilecount="2" columns="2">
+  <grid orientation="orthogonal" width="80" height="40"/>
+  <image source="../../tiles/interior/chimenea.png" width="80" height="40"/>
+ </tileset>
+ <tileset firstgid="3989" name="sillas" tilewidth="25" tileheight="32" tilecount="6" columns="6">
+  <grid orientation="orthogonal" width="152" height="32"/>
+  <image source="../../tiles/interior/sillas.png" width="156" height="34"/>
+ </tileset>
+ <tileset firstgid="3995" name="sillon" tilewidth="56" tileheight="38" tilecount="1" columns="1">
+  <image source="../../tiles/interior/sillon.png" width="56" height="38"/>
+ </tileset>
+ <tileset firstgid="3996" name="DecoracionesObjetos" tilewidth="16" tileheight="48" tilecount="30" columns="5">
+  <grid orientation="orthogonal" width="16" height="16"/>
+  <image source="../../tiles/interior/decoracionesPlantas.png" width="80" height="96"/>
+ </tileset>
+ <tileset firstgid="4026" name="mesa" tilewidth="36" tileheight="33" tilecount="1" columns="1">
+  <grid orientation="orthogonal" width="32" height="32"/>
+  <image source="../../tiles/interior/mesa.png" width="36" height="46"/>
+ </tileset>
+ <tileset firstgid="4027" name="alfombra" tilewidth="48" tileheight="34" tilecount="1" columns="1">
+  <image source="../../tiles/interior/alfombra.png" width="48" height="34"/>
  </tileset>
  <layer id="1" name="Piso" width="35" height="10">
   <data encoding="csv">
@@ -49,32 +80,18 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="6" name="Muebles2" width="35" height="10" offsetx="2.66667" offsety="-0.333333">
-  <data encoding="csv">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,736,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,775,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1031,1032,1033,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1070,1071,1072,0,0,0,0,0,0,0,0,0,0
-</data>
- </layer>
  <layer id="4" name="MueblesLiving" width="35" height="10">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,291,292,0,0,2684356689,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,3053,3054,3055,0,1144,1145,1146,0,3053,3054,3055,291,292,2511,0,2684356689,0,0,0,0,0,0,3053,3054,3055,0,0,0,0,0,0,0,
 2227,2228,2229,3099,3100,3101,0,1183,1184,1185,0,3099,3100,3101,291,292,0,0,2684356689,0,0,0,0,3578,3579,3099,3100,3101,0,0,0,0,0,0,0,
-2274,2275,2276,0,0,0,1100,2124,2125,2126,1100,0,0,0,330,331,0,0,2684356689,0,0,0,0,3604,3605,3819,3820,3821,3822,3828,3829,3715,3716,3721,3722,
-2321,2322,2323,0,273,274,1139,2171,2172,2173,1139,276,277,0,369,370,0,0,2684356689,0,0,0,0,3630,3631,3845,3846,3847,3848,3854,3855,3741,3742,3747,3748,
-3021,3022,3023,3024,312,313,0,767,768,769,0,315,316,0,956,957,0,0,0,0,0,0,0,3656,3657,3871,3872,3873,3874,3880,3881,3767,3768,3773,3774,
-3067,3068,3069,3070,351,352,0,806,807,808,0,354,355,0,995,996,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3799,3800,
-3113,3114,3115,3116,0,0,0,308,309,310,0,0,0,0,0,0,0,0,2684356689,2055,0,0,0,733,734,0,0,0,0,0,0,0,0,0,0,
-3159,3160,3161,3162,0,0,0,347,348,349,0,0,0,0,0,0,0,0,2684356689,2102,0,0,0,772,773,0,0,0,0,0,0,0,0,0,0,
-3205,3206,3207,3208,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2684356689,2149,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2274,2275,2276,0,0,0,1100,2124,2125,2126,1100,0,0,0,0,0,0,0,2684356689,0,0,0,0,3604,3605,3819,3820,3821,3822,3828,3829,3715,3716,3721,3722,
+2321,2322,2323,0,273,274,1139,2171,2172,2173,1139,276,277,0,0,0,0,0,2684356689,0,0,0,0,3630,3631,3845,3846,3847,3848,3854,3855,3741,3742,3747,3748,
+0,0,3023,3024,312,313,0,767,768,769,0,315,316,0,956,957,0,0,0,0,0,0,0,3656,3657,3871,3872,3873,3874,3880,3881,3767,3768,3773,3774,
+0,0,0,3070,351,352,0,806,807,808,0,354,355,0,995,996,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3799,3800,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2684356689,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2684356689,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2684356689,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
  <layer id="5" name="Decoraciones" width="35" height="10">
@@ -82,15 +99,33 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,1141,1142,1143,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2501,0,
-0,0,0,2477,0,0,0,1180,1181,1182,0,0,0,0,0,0,0,2479,0,0,2477,0,0,0,0,0,0,0,0,0,0,0,0,2513,0,
-0,0,0,2489,0,0,0,0,2502,0,0,0,0,0,0,0,0,2491,0,0,2489,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,2514,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,2477,0,0,0,1180,1181,1182,0,0,0,0,0,0,0,2479,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2513,0,
+0,0,0,2489,0,0,0,0,0,0,0,0,0,0,0,0,0,2491,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,744,0,0,742,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,783,0,739,781,0,0,0,0,0,0,0,0,2475,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,778,0,0,0,0,0,0,0,0,0,2487
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1031,1032,1033,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1070,1071,1072,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup id="9" name="Muebles">
+  <object id="31" gid="3921" x="128.333" y="94" width="18" height="20"/>
+  <object id="38" gid="3955" x="304" y="160" width="48" height="48"/>
+  <object id="43" gid="3986" x="0" y="160" width="60" height="74"/>
+  <object id="44" gid="3987" x="224" y="80" width="32" height="40"/>
+  <object id="45" gid="3992" x="377.121" y="157.424" width="25" height="32"/>
+  <object id="49" gid="3995" x="108.333" y="143.333" width="56" height="38"/>
+  <object id="53" gid="4001" x="540" y="155.667" width="16" height="48"/>
+  <object id="66" gid="4000" x="271.333" y="157.333" width="16" height="48"/>
+  <object id="71" gid="4000" x="311" y="81.6667" width="16" height="48"/>
+  <object id="72" gid="4003" x="325.333" y="80.3333" width="16" height="48"/>
+  <object id="75" gid="4003" x="428" y="158" width="16" height="48"/>
+  <object id="84" gid="3964" x="448" y="160" width="48" height="48"/>
+  <object id="115" gid="3994" x="344.152" y="145.848" width="25" height="32"/>
+  <object id="124" gid="3990" x="365.788" y="132.636" width="25" height="32"/>
+  <object id="140" gid="3993" x="384.545" y="146.182" width="25" height="32"/>
+  <object id="141" gid="4026" x="359.333" y="144" width="36" height="33"/>
+ </objectgroup>
  <objectgroup id="8" name="Colisiones">
   <object id="3" x="0.25" y="139" width="55.5" height="20.25"/>
   <object id="5" x="65.5" y="64.5" width="29" height="47"/>
@@ -99,17 +134,26 @@
   <object id="8" x="110.667" y="47" width="49.3333" height="25.6667"/>
   <object id="10" x="163.333" y="48" width="10" height="30.6667"/>
   <object id="12" x="176.333" y="66.6667" width="30" height="44.3333"/>
-  <object id="13" x="224" y="68" width="31.3333" height="10.3333"/>
+  <object id="13" x="228.667" y="68" width="23.6666" height="10.3333"/>
   <object id="14" x="206" y="64.6667" width="87.6667" height="3"/>
   <object id="15" x="293" y="0" width="11" height="79.6667"/>
   <object id="17" x="293" y="111.333" width="11.3333" height="48.3333"/>
   <object id="20" x="305" y="64.6667" width="63.3333" height="3.66667"/>
-  <object id="21" x="322" y="68.3333" width="12" height="10.3333"/>
   <object id="22" x="368.667" y="65" width="30.3333" height="32.3333"/>
   <object id="23" x="400.667" y="49" width="149.667" height="40"/>
   <object id="25" x="529.333" y="90.3333" width="21.6667" height="17.3333"/>
   <object id="26" x="552.333" y="63" width="7.33333" height="5"/>
-  <object id="29" x="273" y="69" width="13.6667" height="10.3333"/>
+  <object id="30" x="120" y="87" width="31.3333" height="14"/>
+  <object id="40" x="303" y="143.333" width="15.6667" height="16"/>
+  <object id="51" x="113.667" y="123" width="45" height="17.3333"/>
+  <object id="85" x="329.333" y="75.6667" width="7.33333" height="3.33333"/>
+  <object id="87" x="449.667" y="150" width="43.6667" height="8.66667"/>
+  <object id="88" x="432.333" y="153.333" width="7.33333" height="4.33333"/>
+  <object id="89" x="542.333" y="151" width="11.3333" height="3.66667"/>
+  <object id="132" x="317" y="76.6667" width="4" height="4"/>
+  <object id="136" x="276" y="73.3333" width="8.33333" height="5"/>
+  <object id="137" x="374.273" y="136.061" width="6.66667" height="5"/>
+  <object id="138" x="275.333" y="151.333" width="7.33333" height="3.66667"/>
  </objectgroup>
  <objectgroup id="2" name="Spawn">
   <object id="1" name="desdePasillo" x="70" y="135.5">
