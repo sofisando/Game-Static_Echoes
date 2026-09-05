@@ -161,6 +161,24 @@ function placeObjectLayerInTiledOrder(
 // OBJETOS GRÁFICOS DE TILED
 // ======================================================
 
+function getNumberProperty(
+  obj: Phaser.Types.Tilemaps.TiledObject,
+  name: string,
+): number | undefined {
+  const value = getObjectProperty(obj, name);
+
+  if (typeof value === "number") {
+    return value;
+  }
+
+  if (typeof value === "string") {
+    const number = Number(value);
+    return Number.isNaN(number) ? undefined : number;
+  }
+
+  return undefined;
+}
+
 export function createMapObjects(
   scene: Phaser.Scene,
   map: Phaser.Tilemaps.Tilemap,
@@ -215,36 +233,28 @@ export function createMapObjects(
 
     const dynamicId = getObjectProperty(obj, "dynamicId");
     const stateFlag = getObjectProperty(obj, "stateFlag");
-    const falseGidRaw = getObjectProperty(obj, "falseGid");
-    const trueGidRaw = getObjectProperty(obj, "trueGid");
-    const falseXRaw = getObjectProperty(obj, "falseX");
-    const trueXRaw = getObjectProperty(obj, "trueX");
+    const falseGid = getNumberProperty(obj, "falseGid");
+    const trueGid = getNumberProperty(obj, "trueGid");
 
-    const falseGid =
-      typeof falseGidRaw === "string" ? Number(falseGidRaw) : falseGidRaw;
+    const falseX = getNumberProperty(obj, "falseX");
+    const trueX = getNumberProperty(obj, "trueX");
 
-    const trueGid =
-      typeof trueGidRaw === "string" ? Number(trueGidRaw) : trueGidRaw;
+    const desapareceRaw = getObjectProperty(obj, "desaparece");
+
+    const desaparece =
+      typeof desapareceRaw === "boolean" ? desapareceRaw : undefined;
 
     let gid = obj.gid;
 
-    const falseX =
-      typeof falseXRaw === "string" ? Number(falseXRaw) : falseXRaw;
-
-    const trueX = typeof trueXRaw === "string" ? Number(trueXRaw) : trueXRaw;
-
     const esDinamico =
-      typeof dynamicId === "string" &&
-      typeof stateFlag === "string" &&
-      typeof falseGid === "number" &&
-      typeof trueGid === "number" &&
-      typeof falseX === "number" &&
-      typeof trueX === "number";
+      typeof dynamicId === "string" && typeof stateFlag === "string";
 
     if (esDinamico) {
       console.log("ESTADO AL CREAR:", stateFlag, hasFlag(stateFlag));
 
-      gid = hasFlag(stateFlag) ? trueGid : falseGid;
+      if (typeof falseGid === "number" && typeof trueGid === "number") {
+        gid = hasFlag(stateFlag) ? trueGid : falseGid;
+      }
     }
 
     // ==================================================
@@ -378,6 +388,7 @@ export function createMapObjects(
         trueGid,
         falseX,
         trueX,
+        desaparece,
       });
     }
   });

@@ -23,8 +23,11 @@ export function updateDynamicObjects(
     );
 
     const gid = activo ? objeto.trueGid : objeto.falseGid;
+    console.log(gid, "gid a actualizar");
+    if (gid !== undefined) {
+      updateDynamicObjectFrame(scene, map, config, objeto, gid);
+    }
 
-    updateDynamicObjectFrame(scene, map, config, objeto, gid!);
     console.log("DATOS POSICIÓN:", {
       dynamicId: objeto.dynamicId,
       activo,
