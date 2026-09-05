@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="12" height="6" tilewidth="16" tileheight="16" infinite="0" nextlayerid="13" nextobjectid="17">
+<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="12" height="6" tilewidth="16" tileheight="16" infinite="0" nextlayerid="13" nextobjectid="46">
  <editorsettings>
   <export target="Baño.json" format="json"/>
  </editorsettings>
@@ -21,6 +21,12 @@
  <tileset firstgid="715" name="PorcelanaObject" tilewidth="64" tileheight="32" spacing="16" margin="16" tilecount="4" columns="2">
   <grid orientation="orthogonal" width="48" height="16"/>
   <image source="../../tiles/interior/fixtures_BA.png" width="208" height="112"/>
+ </tileset>
+ <tileset firstgid="719" name="floresObj" tilewidth="18" tileheight="20" tilecount="3" columns="3">
+  <image source="../../tiles/interior/floresObj.png" width="54" height="20"/>
+ </tileset>
+ <tileset firstgid="722" name="espejo" tilewidth="48" tileheight="18" tilecount="1" columns="1">
+  <image source="../../tiles/interior/espejo.png" width="48" height="18"/>
  </tileset>
  <layer id="1" name="Piso" width="12" height="6">
   <data encoding="csv">
@@ -45,7 +51,7 @@
  <layer id="5" name="Decoraciones" width="12" height="6" offsetx="0.5" offsety="-6.5">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,
-0,2684355167,2684355155,2684355143,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,370,0,0,0,0,0,0,0,
 0,0,0,0,389,0,0,0,0,0,0,0,
 0,291,292,293,0,0,0,308,309,310,311,0,
@@ -89,6 +95,9 @@
     <property name="trueGid" type="int" value="718"/>
    </properties>
   </object>
+  <object id="33" gid="719" x="172.25" y="92" width="18" height="20"/>
+  <object id="34" gid="719" x="0.75" y="61.25" width="18" height="20"/>
+  <object id="45" gid="722" x="18" y="24.5" width="48" height="18"/>
  </objectgroup>
  <objectgroup id="12" name="Interactivos">
   <object id="10" x="115.25" y="38.75" width="7.25" height="12.25">
@@ -111,17 +120,7 @@
    </properties>
   </object>
  </objectgroup>
- <layer id="6" name="Decoracion2" width="12" height="6">
-  <data encoding="csv">
-0,0,0,0,0,0,0,0,365,366,367,0,
-0,0,0,0,0,0,0,0,384,385,386,0,
-0,0,0,0,0,0,0,0,403,404,405,586,
-0,0,0,0,0,0,0,0,0,0,0,598,
-0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0
-</data>
- </layer>
- <objectgroup id="7" name="Spawn">
+ <objectgroup id="7" name="Spawn" visible="0">
   <object id="1" name="desdePasillo" x="9.75" y="74.75">
    <point/>
   </object>

@@ -11,25 +11,16 @@ export const bañoConfig: MapConfig = {
       key: "PisosYParedes",
       image: "assets/tiled/tiles/interior/floorswalls.png",
     },
-
-    {
-      tiledName: "Decoraciones",
-      key: "Decoraciones",
-      image: "assets/tiled/tiles/interior/decorations.png",
-    },
-
     {
       tiledName: "BañoTextiles",
       key: "BañoTextiles",
       image: "assets/tiled/tiles/interior/textiles_BA.png",
     },
-
     {
       tiledName: "BañoPorcelana",
       key: "BañoPorcelana",
       image: "assets/tiled/tiles/interior/fixtures_BA.png",
     },
-
     {
       tiledName: "Muebles",
       key: "Muebles",
@@ -40,6 +31,16 @@ export const bañoConfig: MapConfig = {
       key: "PorcelanaObject",
       image: "assets/tiled/tiles/interior/fixtures_BA.png",
     },
+    {
+      tiledName: "espejo",
+      key: "espejo",
+      image: "assets/tiled/tiles/interior/espejo.png",
+    },
+    {
+      tiledName: "floresObj",
+      key: "floresObj",
+      image: "assets/tiled/tiles/interior/floresObj.png",
+    },
   ],
 
   layers: [
@@ -47,29 +48,21 @@ export const bañoConfig: MapConfig = {
       name: "Piso",
       tilesets: ["PisosYParedes"],
     },
-
     {
       name: "Pared",
       tilesets: ["PisosYParedes"],
     },
-
     {
       name: "Decoraciones",
-      tilesets: ["Decoraciones", "BañoTextiles"],
+      tilesets: ["BañoTextiles"],
     },
-    
     {
       name: "Mueble",
       tilesets: ["Muebles"],
     },
-
     {
       name: "Porcelana",
       tilesets: ["BañoPorcelana"],
-    },
-    {
-      name: "Decoracion2",
-      tilesets: ["BañoTextiles"],
     },
   ],
 };
