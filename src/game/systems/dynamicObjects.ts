@@ -8,11 +8,8 @@ export function updateDynamicObjects(
   config: MapConfig,
   dinamicos: ObjetoDinamico[],
 ): void {
-
-
   console.log("ACTUALIZANDO DINÁMICOS:", dinamicos);
 
-  
   for (const objeto of dinamicos) {
     const activo = hasFlag(objeto.stateFlag);
 
@@ -27,8 +24,52 @@ export function updateDynamicObjects(
 
     const gid = activo ? objeto.trueGid : objeto.falseGid;
 
-    updateDynamicObjectFrame(scene, map, config, objeto, gid);
+    updateDynamicObjectFrame(scene, map, config, objeto, gid!);
+    console.log("DATOS POSICIÓN:", {
+      dynamicId: objeto.dynamicId,
+      activo,
+      falseX: objeto.falseX,
+      trueX: objeto.trueX,
+    });
+    updateDynamicObjectPosition(objeto, activo);
+    console.log("despues de la posicion");
+    updateDynamicObjectVisibility(objeto, activo);
   }
+}
+
+function updateDynamicObjectPosition(
+  objeto: ObjetoDinamico,
+  activo: boolean,
+): void {
+  console.log(
+    "entramos en el cambio de posición, la posicion inicial es:",
+    objeto.sprite.x,
+  );
+  const x = activo ? objeto.trueX : objeto.falseX;
+  console.log("la posicion a cambiar es:", x);
+  //me devuelve undefined
+
+  if (x !== undefined) {
+    console.log("entró al if, cambia posicion a:", x);
+    objeto.sprite.x = x;
+  }
+  console.log("posicion actualizada a:", objeto.sprite.x);
+  objeto.sprite.setDepth(
+    objeto.sprite.y + objeto.sprite.displayHeight * (1 - objeto.sprite.originY),
+  );
+  console.log("profundidad actualizada a:", objeto.sprite.depth);
+}
+
+function updateDynamicObjectVisibility(
+  objeto: ObjetoDinamico,
+  activo: boolean,
+): void {
+  const visible =
+    activo && objeto.desaparece //si hay flag se pone false osea que desaparece sino sige apareciendo
+      ? false
+      : true;
+
+  objeto.sprite.setVisible(visible);
 }
 
 function updateDynamicObjectFrame(
@@ -53,7 +94,7 @@ function updateDynamicObjectFrame(
       tilesetEncontrado = ts;
 
       tilesetConfig = config.tilesets.find((t) => t.tiledName === ts.name);
-
+      console.log("salgo en el break");
       break;
     }
   }
@@ -102,7 +143,6 @@ function updateDynamicObjectFrame(
 
   objeto.sprite.setTexture(tilesetConfig.key, frameName);
   objeto.sprite.setDepth(
-  objeto.sprite.y +
-  objeto.sprite.displayHeight * (1 - objeto.sprite.originY)
-);
+    objeto.sprite.y + objeto.sprite.displayHeight * (1 - objeto.sprite.originY),
+  );
 }

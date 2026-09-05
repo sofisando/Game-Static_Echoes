@@ -217,6 +217,8 @@ export function createMapObjects(
     const stateFlag = getObjectProperty(obj, "stateFlag");
     const falseGidRaw = getObjectProperty(obj, "falseGid");
     const trueGidRaw = getObjectProperty(obj, "trueGid");
+    const falseXRaw = getObjectProperty(obj, "falseX");
+    const trueXRaw = getObjectProperty(obj, "trueX");
 
     const falseGid =
       typeof falseGidRaw === "string" ? Number(falseGidRaw) : falseGidRaw;
@@ -226,11 +228,18 @@ export function createMapObjects(
 
     let gid = obj.gid;
 
+    const falseX =
+      typeof falseXRaw === "string" ? Number(falseXRaw) : falseXRaw;
+
+    const trueX = typeof trueXRaw === "string" ? Number(trueXRaw) : trueXRaw;
+
     const esDinamico =
       typeof dynamicId === "string" &&
       typeof stateFlag === "string" &&
       typeof falseGid === "number" &&
-      typeof trueGid === "number";
+      typeof trueGid === "number" &&
+      typeof falseX === "number" &&
+      typeof trueX === "number";
 
     if (esDinamico) {
       console.log("ESTADO AL CREAR:", stateFlag, hasFlag(stateFlag));
@@ -367,6 +376,8 @@ export function createMapObjects(
         stateFlag,
         falseGid,
         trueGid,
+        falseX,
+        trueX,
       });
     }
   });

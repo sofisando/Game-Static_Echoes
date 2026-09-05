@@ -277,8 +277,39 @@
                  "gid":3972,
                  "height":32,
                  "id":140,
-                 "name":"",
+                 "name":"silla2",
                  "opacity":1,
+                 "properties":[
+                        {
+                         "name":"dynamicId",
+                         "type":"string",
+                         "value":"silla2"
+                        }, 
+                        {
+                         "name":"falseGid",
+                         "type":"int",
+                         "value":3972
+                        }, 
+                        {
+                         "name":"falseX",
+                         "type":"int",
+                         "value":445
+                        }, 
+                        {
+                         "name":"stateFlag",
+                         "type":"string",
+                         "value":"pasadizoEncontrado"
+                        }, 
+                        {
+                         "name":"trueGid",
+                         "type":"int",
+                         "value":3972
+                        }, 
+                        {
+                         "name":"trueX",
+                         "type":"int",
+                         "value":460
+                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -326,18 +357,6 @@
                  "y":76.6667
                 }, 
                 {
-                 "height":2.66667,
-                 "id":148,
-                 "name":"",
-                 "opacity":1,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":7,
-                 "x":101.333,
-                 "y":73
-                }, 
-                {
                  "gid":3984,
                  "height":48,
                  "id":149,
@@ -349,6 +368,55 @@
                  "width":16,
                  "x":323,
                  "y":79
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":10,
+         "name":"Interactivos",
+         "objects":[
+                {
+                 "height":5.66666666666669,
+                 "id":160,
+                 "name":"",
+                 "opacity":1,
+                 "properties":[
+                        {
+                         "name":"dialogo",
+                         "type":"string",
+                         "value":"Es ac\u00e1"
+                        }, 
+                        {
+                         "name":"effects_flags",
+                         "type":"string",
+                         "value":"pasadizoEncontrado"
+                        }, 
+                        {
+                         "name":"interactionId",
+                         "type":"string",
+                         "value":"silla2"
+                        }, 
+                        {
+                         "name":"prompt",
+                         "type":"string",
+                         "value":"Ver"
+                        }, 
+                        {
+                         "name":"tipo",
+                         "type":"string",
+                         "value":"inspeccionar"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":6,
+                 "x":417.333333333333,
+                 "y":137.333333333333
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -781,11 +849,11 @@
                  "type":"",
                  "visible":true,
                  "width":56,
-                 "x":2.00000000000001,
+                 "x":2,
                  "y":141
                 }, 
                 {
-                 "height":8.33333333333333,
+                 "height":8.33333,
                  "id":157,
                  "name":"PuertaAlGaraje",
                  "opacity":1,
@@ -808,8 +876,8 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":24.6666666666667,
-                 "x":51.6666666666667,
+                 "width":24.6667,
+                 "x":51.6667,
                  "y":55
                 }],
          "opacity":1,
@@ -818,8 +886,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":10,
- "nextobjectid":158,
+ "nextlayerid":11,
+ "nextobjectid":162,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.12.2",
